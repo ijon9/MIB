@@ -1,0 +1,33 @@
+MIB
+Britni Canale
+Mohammed Jamil
+PM Isaac Jon
+Mohammed Uddin
+pd 6
+---------------------
+EventBlox -- Calendar application which allows users to add events and tasks for
+certain days, and can publicize events to their friends through a friending system.
+
+
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+isaacJ -- 2019-01-08 18:54
+--------------------------------------------------------------
+Design Doc Fixes/Changes:
+- Clarifications made to the to-do list, which is not a separate entity
+from the calendar, but is just a larger display for the current day's
+events and tasks
+- Clarified that Traffic and Weather APIs will be used as details about
+events
+- Clarified what JS files will be used for
+- Modified site map to extend the friends tab directly from home page
+==============================================================

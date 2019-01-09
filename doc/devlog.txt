@@ -30,4 +30,7 @@ events and tasks
 events
 - Clarified what JS files will be used for
 - Modified site map to extend the friends tab directly from home page
+- Added API keys
+- Added reason for why we are using Bootstrap
+- Clarified how the Friends database works
 ==============================================================

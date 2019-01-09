@@ -34,3 +34,9 @@ events
 - Added reason for why we are using Bootstrap
 - Clarified how the Friends database works
 ==============================================================
+
+mohammedU -- 2019-01-09 12:22
+--------------------------------------------------------------
+Added file to create database and tables
+Added some adders to get add data to database
+==============================================================

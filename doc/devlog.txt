@@ -34,3 +34,10 @@ events
 - Added reason for why we are using Bootstrap
 - Clarified how the Friends database works
 ==============================================================
+
+britniC -- 2019-01-09 12:31
+--------------------------------------------------------------
+-Started creating basic templates; made base, login, and home
+ so far
+-Started flask & python in app.py
+==============================================================

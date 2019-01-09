@@ -35,6 +35,11 @@ events
 - Clarified how the Friends database works
 ==============================================================
 
+mohammedJ -- 2019-01-09 1:07
+--------------------------------------------------------------
+Added scripts to retrieve api data
+==============================================================
+
 britniC -- 2019-01-09 12:31
 --------------------------------------------------------------
 -Started creating basic templates; made base, login, and home

@@ -2,11 +2,13 @@
 
 {%block title%} Home {%endblock%}
 
-{%block body%}
+<div class = "d-flex bd-highlight">
 
-<div class = "row">
+  {%block body%}
 
-  <nav style="background-color:#90AA86; width:300px; height:100%; position:fixed">
+  <div class = "p-2 bd-highlight" style="background-color:#90AA86; width:300px; height:100%; position:fixed">
+
+    {%block nav%}
 
     <ul class = "nav flex-column" style = "text-align:center">
 
@@ -32,7 +34,29 @@
 
     </ul>
 
-  </nav>
+    {%endblock%}
+
+  </div>
+
+  <div class =  "p-2 flex-shrink-1 bd-highlight">
+
+    {%block main%}
+
+    <h4 style = "text-align:center; color:black"> Hello, {{user}} </h4> <br>
+
+    {% set msgs = get_flashed_messages() %}
+
+    {% for each in msgs %}
+
+      <div class="alert" role="alert">{{each}} </div>
+
+    {% endfor %}
+
+    <h6> Your Upcoming Tasks </h6>
+
+    {%endblock%}
+
+  </div>
 
 </div>
 

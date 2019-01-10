@@ -35,11 +35,6 @@ events
 - Clarified how the Friends database works
 ==============================================================
 
-mohammedJ -- 2019-01-09 1:07
---------------------------------------------------------------
-Added scripts to retrieve api data
-==============================================================
-
 mohammedU -- 2019-01-09 12:22
 --------------------------------------------------------------
 Added file to create database and tables
@@ -53,6 +48,11 @@ britniC -- 2019-01-09 12:31
 -Started flask & python in app.py
 ==============================================================
 
+mohammedJ -- 2019-01-09 1:07
+--------------------------------------------------------------
+Added scripts to retrieve api data
+==============================================================
+
 isaacJ -- 2019-01-09 18:06
 --------------------------------------------------------------
 Deleted keys from design doc
@@ -63,4 +63,11 @@ britniC -- 2019-01-09 21:45
 -Created navbar for homepage
 -Encountering difficulties with bootstrap columns in attempts
  to complete home page
+==============================================================
+
+mohammedJ -- 2019-01-10 00:02
+--------------------------------------------------------------
+-Added the LocationIQ API to design doc for geocoding addresses
+-Added the 411 for the LocationIQ API
+-Added functions to get traffic and geocode addresses to apihelp.py
 ==============================================================

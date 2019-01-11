@@ -79,3 +79,9 @@ britniC -- 2019-01-10 22:20
 -Added to-do list and buttons
 -Added place-holder to-do list for testing purposes in app.py
 ==============================================================
+
+mohammedJ -- 2019-01-10 23:15
+--------------------------------------------------------------
+-Added frontend for login.html
+-Added auth.js to switch between login and register on same page
+==============================================================

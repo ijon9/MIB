@@ -4,7 +4,7 @@
 
 {%block body%}
 <div class="row" style = "display:table; width:100%">
-    <div style="display:table-cell; background-color:#90AA86; width:300px; ">
+    <div style="display:table-cell; background-color:#90AA86; width:300px; height:1000px">
       <div class="nav flex-column nav-pills" style="text-align:center;">
           <a class = 'nav-link' href = "/" style="color:white; font-family:'Courier New', Courier, monospace;"> <h3> <b>EventBlox</b> </h3></a>
           <a class = 'btn btn-dark' role = "button" href = "#" style="color:white"> Logout </a>
@@ -13,12 +13,23 @@
           <a class = 'nav-link' href = "#" style="color:white"> What's Happening </a>
       </div>
     </div>
-    <div style=" display:table-cell"">
+    <div style=" display:table-cell; padding:20px">
         {%block main%}
 
-        <h4 style = "text-align:center; color:black"> Hello, {{user}} </h4> <br>
+        <h4 style = "text-align:center; color:black"> Welcome, {{user}} </h4> <br>
 
         {% set msgs = get_flashed_messages() %}
+
+        {% if not msgs %}
+
+        <div class="alert alert-success" role="alert">
+          You have no alerts!
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span> <!-- still must add JS behavior -->
+            </button>
+        </div>
+
+        {% else %}
 
         {% for each in msgs %}
 
@@ -26,11 +37,48 @@
 
         {% endfor %}
 
-        <h6> Your Upcoming Tasks </h6>
+        {% endif %}
+
+        <h3> Your Upcoming Tasks </h3><br>
+
+        <div class="list-group col-6">
+
+        {% if not todo %}
+
+          You have no items on your to-do list! To add tasks, select the "Add Task" button below.
+
+        {% else %}
+
+        {% for each in todo %}
+
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id={{each[0]}}>
+              <b> {{ each[1] }} </b>
+            </div>
+            <small> {{each[2] }} </small>
+          </div>
+          <p class="mb-1"> {{ each[3] }} </p>
+        </a>
+
+        {% endfor %}
+
+        {% endif %}
+
+        </div> <br><br>
+
+        <a role="button" class="btn btn-dark" href="#">Delete Items</a>
+
+        <a role="button" class="btn btn-dark" href="#">Add Task</a>
+
+      </div>
+
+    </div>
 
     {%endblock%}
-    </div>
 
-    </div>
+
+
   </div>
 {%endblock%}

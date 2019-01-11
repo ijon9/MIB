@@ -71,3 +71,11 @@ mohammedJ -- 2019-01-10 00:02
 -Added the 411 for the LocationIQ API
 -Added functions to get traffic and geocode addresses to apihelp.py
 ==============================================================
+
+britniC -- 2019-01-10 22:20
+--------------------------------------------------------------
+-Fixed format on home.html, found solution to problems with
+ bootstrap
+-Added to-do list and buttons
+-Added place-holder to-do list for testing purposes in app.py
+==============================================================

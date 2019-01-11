@@ -4,6 +4,12 @@
 
 {%block body%}
 <div class="container">
+    {% set msgs = get_flashed_messages() %}
+    {% for each in msgs %}
+    <br>
+    <div class="alert alert-primary" role="alert">{{each}} </div>
+
+    {% endfor %}
     <br>
     <div class="jumbotron" style="background-color:#90AA86;">
         <div class="row">
@@ -32,9 +38,9 @@
                                     <label for="user">Username</label>
                                     <input type="text" class="form-control" id="user"  placeholder="Enter username" name="user">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group"id="display" hidden>
                                     <label for="display">Display Name</label>
-                                    <input type="text" class="form-control" id="user"  placeholder="Enter a display name" name="display">
+                                    <input type="text" class="form-control" id="user"  placeholder="Enter display name" name="display">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>

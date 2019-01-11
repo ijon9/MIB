@@ -1,6 +1,6 @@
-import sqlite
+import sqlite3
 
-DB_FILE = "data/database.db"
+DB_FILE = "../data/database.db"
 
 db = sqlite3.connect(DB_FILE)
 c = db.cursor()

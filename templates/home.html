@@ -2,62 +2,35 @@
 
 {%block title%} Home {%endblock%}
 
-<div class = "d-flex bd-highlight">
+{%block body%}
+<div class="row">
+    <div class="col-3">
+      <div class="nav flex-column nav-pills" style="text-align:center;background-color:#90AA86; width:300px; height:100%; position:fixed">
+          <a class = 'nav-link' href = "/" style="color:white; font-family:'Courier New', Courier, monospace;"> <h3> <b>EventBlox</b> </h3></a>
+          <a class = 'btn btn-dark' role = "button" href = "#" style="color:white"> Logout </a>
+          <a class = 'nav-link' href = "#" style="color:white"> Account </a>
+          <a class = 'nav-link' href = "#" style="color:white"> Calendar </a>
+          <a class = 'nav-link' href = "#" style="color:white"> What's Happening </a>
+      </div>
+    </div>
+    <div class="col-9">
+        {%block main%}
 
-  {%block body%}
-
-  <div class = "p-2 bd-highlight" style="background-color:#90AA86; width:300px; height:100%; position:fixed">
-
-    {%block nav%}
-
-    <ul class = "nav flex-column" style = "text-align:center">
-
-      <li class = "nav-item">
-        <a class = 'nav-link' href = "/" style="color:white; font-family:'Courier New', Courier, monospace;"> <h3> <b>EventBlox</b> </h3></a>
-      </li>
-
-      <li class = "nav-item">
-        <a class = 'btn btn-dark' role = "button" href = "#" style="color:white"> Logout </a>
-      </li>
-
-      <li class = "nav-item">
-        <a class = 'nav-link' href = "#" style="color:white"> Account </a>
-      </li>
-
-      <li class = "nav-item">
-        <a class = 'nav-link' href = "#" style="color:white"> Calendar </a>
-      </li>
-
-      <li class = "nav-item">
-        <a class = 'nav-link' href = "#" style="color:white"> What's Happening </a>
-      </li>
-
-    </ul>
-
+        <h4 style = "text-align:center; color:black"> Hello, {{user}} </h4> <br>
+    
+        {% set msgs = get_flashed_messages() %}
+    
+        {% for each in msgs %}
+    
+          <div class="alert" role="alert">{{each}} </div>
+    
+        {% endfor %}
+    
+        <h6> Your Upcoming Tasks </h6>
+    
     {%endblock%}
-
+    </div>
+    
+    </div>
   </div>
-
-  <div class =  "p-2 flex-shrink-1 bd-highlight">
-
-    {%block main%}
-
-    <h4 style = "text-align:center; color:black"> Hello, {{user}} </h4> <br>
-
-    {% set msgs = get_flashed_messages() %}
-
-    {% for each in msgs %}
-
-      <div class="alert" role="alert">{{each}} </div>
-
-    {% endfor %}
-
-    <h6> Your Upcoming Tasks </h6>
-
-    {%endblock%}
-
-  </div>
-
-</div>
-
 {%endblock%}

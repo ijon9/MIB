@@ -3,7 +3,11 @@
 {%block title%} Home {%endblock%}
 
 {%block body%}
+
 <div class="row" style = "display:table; width:100%">
+
+  {%block nav%}
+
     <div style="display:table-cell; background-color:#90AA86; width:300px; height:1000px">
       <div class="nav flex-column nav-pills" style="text-align:center;">
           <a class = 'nav-link' href = "/" style="color:white; font-family:'Courier New', Courier, monospace;"> <h3> <b>EventBlox</b> </h3></a>
@@ -13,8 +17,13 @@
           <a class = 'nav-link' href = "#" style="color:white"> What's Happening </a>
       </div>
     </div>
+
+    {% endblock %}
+
+    {% block main%}
+
     <div style=" display:table-cell; padding:20px">
-        {%block main%}
+
 
         <h4 style = "text-align:center; color:black"> Welcome, {{user}} </h4> <br>
 
@@ -77,6 +86,7 @@
     </div>
 
     {%endblock%}
+
 
 
 

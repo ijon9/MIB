@@ -19,6 +19,11 @@ def home():
 def login():
     return render_template("login.html")
 
+@app.route("/calendar")
+def calendar():
+    return render_template("calendar.html")
+
+
 if __name__== "__main__":
     app.debug = True
 app.run()

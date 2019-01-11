@@ -1,0 +1,41 @@
+{%extends "home.html"%}
+
+{%block main%}
+
+<h4 style = "text-align:center"> Your Calendar </h4>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Sunday</th>
+      <th scope="col">Monday</th>
+      <th scope="col">Tuesday</th>
+      <th scope="col">Wednesday</th>
+      <th scope="col">Thurday</th>
+      <th scope="col">Friday</th>
+      <th scope="col">Saturday</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for week in month %}
+
+    <tr>
+
+      {% for day in week %}
+
+      <td>
+
+
+
+      </td>
+
+    </tr>
+
+
+    
+  </tbody>
+</table>
+
+
+{%endblock%}

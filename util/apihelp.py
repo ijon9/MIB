@@ -1,6 +1,7 @@
 import datetime
 import requests
-DarkSkyKey="a0102af2cf0070050894dd64c8980654"
+import json
+
 def holidays(year,month):
     '''
         Gets a dictionary of holidays for a certain month and year
@@ -34,6 +35,8 @@ def weather(location,time):
         The locations should be a tuple containting the longitude and latitude for example (latitude, longitude)
         The time should be a datetime object
     '''
+    with open("keys.json") as f:
+        DarkSkyKey = json.load(f)["darkSky"]
     time=datify(time)
     r=requests.get("https://api.darksky.net/forecast/{0}/{1},{2},{3}".format(DarkSkyKey,location[0],location[1],time))
     try:
@@ -49,8 +52,10 @@ def getGeocode(address):
         Returns the longitude and latitude for a given address
     '''
     url = "https://us1.locationiq.com/v1/search.php"
+    with open("keys.json") as f:
+        locationKey = json.load(f)["location"]
     data = {
-        'key': '3228e551e787f2',
+        'key': locationKey,
         'q': address,
         'format': 'json'
     }
@@ -65,9 +70,11 @@ def traffic(location):
         Returns traffic incidents near a given location
     '''
     url="https://www.mapquestapi.com/traffic/v2/incidents"
+    with open("keys.json") as f:
+        trafficKey = json.load(f)["traffic"]
     data={
         "outFormat":"json",
-        "key":"CSlfJJOM0zpH9dA10zzIJkdDl6stmUtR",
+        "key":trafficKey,
         "boundingBox":"{0},{1},{2},{3}".format(location[0],location[1],location[0]+0.03,location[1]+0.03),
         "filters":"incidents,construction,congestion,event"
     }
@@ -75,7 +82,7 @@ def traffic(location):
     response=r.json()
     incidentlist=[]
     for incident in response["incidents"]:
-        incidentlist.append(incident["shortDesc"]) 
+        incidentlist.append(incident["shortDesc"])
     return incidentlist
 
 loc=getGeocode("Stuyvesant High School")

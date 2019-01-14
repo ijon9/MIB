@@ -127,6 +127,9 @@ def add():
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     return render_template("add.html",display=display,avatar=avatar)
 
+@app.route("/requests")
+def frq():
+    return render_template("requests.html")
 
 if __name__== "__main__":
     app.debug = True

@@ -29,15 +29,30 @@ def home():
         return redirect(url_for("login"))
     if "additems" in request.args:
         print(request.args)
-        adders.add_event(session["username"], request.args["Title"], request.args["Date"][0:2], request.args["Date"][3:5], request.args["Date"][6:], request.args["Time"], request.args["Address"], request.args["Description"], request.args["private"], request.args["Alerts"], request.args["priority"])
+        try:
+            date=request.args["Date"].split("-")
+            adders.add_event(session["username"], request.args["Title"], date[1], date[2], date[0], request.args["Time"], request.args["Address"], request.args["Description"], request.args["private"], request.args["Alerts"], request.args["priority"])
+        except:
+            flash("Something went wrong")
         print("Added")
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     date = datetime.date.today()
-    print(date.month)
-    todo = calendar.get_todo(session["username"], date.month, date.day, date.year)
+    year=str(date.year)
+    month=""
+    day=""
+    if date.month<10:
+        month="0"+str(date.month)
+    else:
+        month=str(month)
+    if date.day<10:
+        day="0"+str(date.day)
+    else:
+        day=str(date.day)
+    todo = calendar.get_todo(session["username"], month, day, year)
+    print(todo)
     return render_template("home.html", avatar=avatar,display= display,todo = todo)
 
 @app.route("/login")
@@ -51,7 +66,8 @@ def cal():
     if "username" not in session:
         return redirect(url_for("login"))
     date = datetime.date.today().isocalendar()
-    month = calendar.get_calendar(date[0], date[1], session["username"])
+    print(date)
+    month = calendar.get_calendar(date[0], date[2], session["username"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
@@ -94,7 +110,11 @@ def logout():
 def add():
     if "username" not in session:
         return redirect(url_for("login"))
-    return render_template("add.html")
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    return render_template("add.html",display=display,avatar=avatar)
 
 
 if __name__== "__main__":

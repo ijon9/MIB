@@ -24,8 +24,20 @@ def get_calendar(year, month, user):
         monthcalendar[w] = {}
         d = 0
         for day in week:
-            monthcalendar[w][d] = [day.day, get_todo(user, year, month, day.day)]
-            print(get_todo(user, year, month, day.day))
+            stryear=str(year)
+            strmonth=""
+            strday=""
+            if month<10:
+                strmonth="0"+str(month)
+            else:
+                strmonth=str(month)
+            if day.day<10:
+                strday="0"+str(day.day)
+            else:
+                strday=str(day.day)
+            print(strday)
+            monthcalendar[w][d] = [day.day, get_todo(user, strmonth, strday, stryear)]
+            print(get_todo(user, strmonth, strday, stryear))
             d = d+1
         w = w+1
     print(monthcalendar)

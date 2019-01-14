@@ -126,3 +126,16 @@ britniC -- 2019-01-13 23:19
  get_todo that is not allowing it to return the events on
  specific days, will fix later.
 ==============================================================
+
+mohammedJ -- 2019-01-14 00:33
+--------------------------------------------------------------
+Design Doc Modifications:
+-Switched to a better Holiday API
+-Added adorable avatars API
+==============================================================
+
+mohammedJ -- 2019-01-14 01:24
+--------------------------------------------------------------
+-Todo List now displays on home page
+-Fixed issues with Calendar
+==============================================================

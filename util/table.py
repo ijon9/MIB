@@ -13,7 +13,7 @@ c.execute(command)
 command = "CREATE TABLE IF NOT EXISTS friends(username TEXT, friend TEXT, accepted INTEGER)"
 c.execute(command)
 
-command = "CREATE TABLE IF NOT EXISTS calendar(creator TEXT, name TEXT, day TEXT, clock TEXT, location TEXT, description TEXT, public INTEGER, alert TEXT, priority INTEGER)"
+command = "CREATE TABLE IF NOT EXISTS calendar(creator TEXT, name TEXT, month TEXT, day TEXT, year TEXT, clock TEXT, location TEXT, description TEXT, public INTEGER, alert TEXT, priority INTEGER)"
 c.execute(command)
 
 db.commit()

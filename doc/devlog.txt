@@ -110,7 +110,7 @@ Finished Account Settings Page
 -Added new route app.py
 ==============================================================
 
-mohammedU -- 2019-01-13 20:15
+mohammedU -- 2019-01-13 20:25
 --------------------------------------------------------------
-Fixed functions that accessed the calendar table in the database
+Modified the calendar table in the database and changed related functions
 ==============================================================

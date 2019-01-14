@@ -1,6 +1,6 @@
 {%extends "home.html"%}
 
-{%block main%}
+{% block main %}
 
 <h4 style = "text-align:center"> Your Calendar </h4>
 
@@ -18,6 +18,8 @@
   </thead>
   <tbody>
 
+
+
     {% for week in month %}
 
     <tr>
@@ -30,12 +32,14 @@
 
       </td>
 
+      {%endfor%}
+
     </tr>
 
+    {%endfor%}
 
-    
   </tbody>
 </table>
 
 
-{%endblock%}
+{% endblock %}

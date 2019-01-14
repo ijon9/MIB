@@ -33,9 +33,9 @@ Prepare API Keys:
 - Load the keys into `keys.json`.
 ```
 {
-    "holiday":"<Insert key here>",
     "weather":"<Insert key here>",
-    "traffic":"<Insert key here>"
+    "traffic":"<Insert key here>",
+    "locationIQ":"<Insert key here>"
 }
 ```
 
@@ -45,9 +45,9 @@ To run the app:
 ```
 
 ## API Information
-- Traffic: https://developer.mapquest.com/documentation/traffic-api/
 - Weather: https://darksky.net/dev
-- Holiday: https://holidayapi.pl/
+- Traffic: https://developer.mapquest.com/documentation/traffic-api/
+- LocationIQ: https://locationiq.com/docs
 
 ## Dependencies: 
 - Flask: Runs the web application on local host.

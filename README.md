@@ -27,3 +27,21 @@ Prepare the database by running:
 ```
 python resetdb.py
 ```
+
+Prepare API Keys:
+- Acquire API keys for those found in [API Information](#API-Information)
+- Load the keys into `keys.json`.
+```
+{
+    "news":"<Insert key here>",
+    "weather":"<Insert key here>",
+    "traffic":"<Insert key here>",
+    "commuteID":"<Insert key here>",
+    "commuteCode":"<Insert key here>"
+}
+```
+
+To run the app: 
+```
+(venv)$python app.py
+```

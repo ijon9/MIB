@@ -11,10 +11,21 @@
     <div style="display:table-cell; background-color:#90AA86; width:300px; height:1000px">
       <div class="nav flex-column nav-pills" style="text-align:center;">
           <a class = 'nav-link' href = "/" style="color:white; font-family:'Courier New', Courier, monospace;"> <h3> <b>EventBlox</b> </h3></a>
-          <a class = 'btn btn-dark' role = "button" href = "#" style="color:white"> Logout </a>
-          <a class = 'nav-link' href = "#" style="color:white"> Account </a>
+          <div>
+          <div class="card text-white bg-dark " style="text-align:left;float:top;height:4rem;justify-content: center">
+              <div class="card-body">
+              <img src="{{avatar}}" height="48px" alt="Not available">    {{display}}
+              </div>
+          </div>
+        </div>
+          <a class = 'nav-link' href = "/account" style="color:white"> Account </a>
           <a class = 'nav-link' href = "#" style="color:white"> Calendar </a>
           <a class = 'nav-link' href = "#" style="color:white"> What's Happening </a>
+          <div>
+          <a class = 'btn btn-dark' role = "button" href = "#" style="color:white;"> Logout </a>
+          </div>
+          <div>
+        </div>
       </div>
     </div>
 
@@ -23,8 +34,7 @@
     {% block main%}
 
     <div style=" display:table-cell; padding:20px">
-
-
+       
         <h4 style = "text-align:center; color:black"> Welcome, {{user}} </h4> <br>
 
         {% set msgs = get_flashed_messages() %}
@@ -42,7 +52,7 @@
 
         {% for each in msgs %}
 
-          <div class="alert" role="alert">{{each}} </div>
+          <div class="alert" role="alert-primary">{{each}} </div>
 
         {% endfor %}
 
@@ -51,6 +61,7 @@
         <h3> Your Upcoming Tasks </h3><br>
 
         <div class="list-group col-6">
+
 
         {% if not todo %}
 

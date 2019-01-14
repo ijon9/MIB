@@ -32,11 +32,11 @@
 
     {% endblock %}
 
-    {% block main%}
-
     <div style=" display:table-cell; padding:20px">
 
-        <h4 style = "text-align:center; color:black"> Welcome, {{user}} </h4> <br>
+    {% block main%}
+
+    <h4 style = "text-align:center; color:black"> Welcome, {{user}} </h4> <br>
 
         {% set msgs = get_flashed_messages() %}
 
@@ -95,9 +95,11 @@
 
       </div>
 
+
+      {%endblock%}
+      
     </div>
 
-    {%endblock%}
 
 
 

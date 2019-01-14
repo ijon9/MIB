@@ -26,17 +26,14 @@
 
       {% for day in month[week] %}
 
-      <td>
+      <td href = "/todo?user={{user}}&month={{m}}+&day={{month[week][day][0]}}&year={{y}}">
 
         <h7 style = "color:black"> {{month[week][day][0]}}</h7><br>
 
-        {%for item in month[week][day]%}
+        {%for item in month[week][day][1]%}
 
-        {%if day is not number%}
+        {{item[4]}} {{item[0]}}
 
-        {{day[4]}} {{day[0]}}
-
-        {%endif%}
 
         {%endfor%}
 
@@ -50,6 +47,8 @@
 
   </tbody>
 </table>
+
+<a role="button" class="btn btn-dark" href="/add">Add Task</a>
 
 
 {% endblock %}

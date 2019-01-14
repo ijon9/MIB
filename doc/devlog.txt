@@ -139,3 +139,11 @@ mohammedJ -- 2019-01-14 01:24
 -Todo List now displays on home page
 -Fixed issues with Calendar
 ==============================================================
+
+
+britniC -- 2019-01-14 12:33
+--------------------------------------------------------------
+-Fixed display of events on calendar and todo list, still
+ having issues with alerts
+-Added todo.html
+==============================================================

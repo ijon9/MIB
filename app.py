@@ -72,7 +72,7 @@ def cal():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("calendar.html",avatar=avatar,display=display, month = month)
+    return render_template("calendar.html",avatar=avatar,display=display, month = month, y =date[0], m = date[2])
 
 
 @app.route("/account",methods=["POST","GET"])
@@ -95,6 +95,17 @@ def acc():
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     return render_template("account.html",avatar=avatar,display=display)
 
+
+@app.route("todo", methods=["GET"])
+def todo():
+    if "username" not in session:
+        return redirect(url_for("login"))
+    month = request.args["month"]
+    day = request.args["day"]
+    year = request.args["year"]
+    todolist = calendar.get_todo(session["username"], month, day, year)
+    print(todolist)
+    return render_template("todo.html", m = month, d = day, year = year, user = session["username"])
 
 @app.route("/logout")
 def logout():

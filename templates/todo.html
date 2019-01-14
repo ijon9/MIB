@@ -1,0 +1,43 @@
+{%extends "home.html"%}
+
+{%block main%}
+
+<h3> Your Tasks on {{m}}-{{d}}-{{year}} </h3><br>
+
+<div class="list-group col-6">
+
+
+{% if not todo %}
+
+  You have no items on your to-do list! To add tasks, select the "Add Task" button below.
+
+{% else %}
+
+{% for each in todo %}
+
+<a href="#" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id={{each[0]}}>
+      <b> {{ each[0] }} </b>
+    </div>
+    <small> {{each[4] }} </small>
+  </div>
+  <p class="mb-1"> {{ each[6] }} </p>
+</a>
+
+{% endfor %}
+
+{% endif %}
+
+</div> <br><br>
+
+<a role="button" class="btn btn-dark" href="#">Delete Items</a>
+
+<a role="button" class="btn btn-dark" href="/add">Add Task</a>
+
+</div>
+
+
+
+{%endblock%}

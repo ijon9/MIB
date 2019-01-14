@@ -75,7 +75,7 @@ mohammedJ -- 2019-01-10 00:02
 mohammedU -- 2019-01-10 12:20
 --------------------------------------------------------------
 Added register/login functions
-Added functions to change account settings like password, display name, and avatar 
+Added functions to change account settings like password, display name, and avatar
 ==============================================================
 
 britniC -- 2019-01-10 22:20
@@ -104,7 +104,7 @@ Added functions to add friends and to change the status of friend requests
 
 mohammedJ -- 2019-01-13 20:00
 --------------------------------------------------------------
-Finished Account Settings Page 
+Finished Account Settings Page
 -Added accounts.html
 -Added getters util file
 -Added new route app.py
@@ -113,4 +113,16 @@ Finished Account Settings Page
 mohammedU -- 2019-01-13 20:25
 --------------------------------------------------------------
 Modified the calendar table in the database and changed related functions
+==============================================================
+
+britniC -- 2019-01-13 23:19
+--------------------------------------------------------------
+-Finished Calendar.html, however events still are not
+ displaying. Need to fix format that months and dates are
+ passed into functions
+-Finished add.html, events can successfully be added into
+ database.
+-Events can be added but not displayed, there is an error in
+ get_todo that is not allowing it to return the events on
+ specific days, will fix later.
 ==============================================================

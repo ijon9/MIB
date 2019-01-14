@@ -1,6 +1,8 @@
 from flask import Flask
 import sqlite3, calendar
 
+from util import table
+
 DB_FILE = "data/database.db"
 
 
@@ -20,11 +22,11 @@ def get_calendar(year, month, user):
     d = 0
     for week in cal:
         monthcalendar[w] = {}
-        w = w+1
         d = 0
         for day in week:
             monthcalendar[w][d] = [day.day, get_todo(user, year, month, day.day)]
+            print(get_todo(user, year, month, day.day))
             d = d+1
+        w = w+1
+    print(monthcalendar)
     return monthcalendar
-
-print(get_calendar(2019, 1, "cool"))

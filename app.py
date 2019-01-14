@@ -27,11 +27,18 @@ def home():
         return redirect(url_for("login"))
     if "username" not in session:
         return redirect(url_for("login"))
+    if "additems" in request.args:
+        print(request.args)
+        adders.add_event(session["username"], request.args["Title"], request.args["Date"][0:2], request.args["Date"][3:5], request.args["Date"][6:], request.args["Time"], request.args["Address"], request.args["Description"], request.args["private"], request.args["Alerts"], request.args["priority"])
+        print("Added")
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("home.html", avatar=avatar,display= display,todo = [["1", "Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"], ["2","Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"], ["3","Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"]])
+    date = datetime.date.today()
+    print(date.month)
+    todo = calendar.get_todo(session["username"], date.month, date.day, date.year)
+    return render_template("home.html", avatar=avatar,display= display,todo = todo)
 
 @app.route("/login")
 def login():
@@ -41,8 +48,10 @@ def login():
 
 @app.route("/calendar")
 def cal():
+    if "username" not in session:
+        return redirect(url_for("login"))
     date = datetime.date.today().isocalendar()
-    month = calendar.get_calendar(date[0], date[1])
+    month = calendar.get_calendar(date[0], date[1], session["username"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
@@ -80,6 +89,13 @@ def logout():
     except:
         flash("You have successfully logged out")
         return redirect(url_for("login"))
+
+@app.route("/add")
+def add():
+    if "username" not in session:
+        return redirect(url_for("login"))
+    return render_template("add.html")
+
 
 if __name__== "__main__":
     app.debug = True

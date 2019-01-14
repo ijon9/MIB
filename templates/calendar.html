@@ -24,13 +24,20 @@
 
     <tr>
 
-      {% for day in week %}
+      {% for day in month[week] %}
 
       <td>
 
-        {{day[0]}}<br>
+        <h7 style = "color:black"> {{month[week][day][0]}}</h7><br>
 
-        {%for item in day%}
+        {%for item in month[week][day]%}
+
+        {%if day is not number%}
+
+        {{day[4]}} {{day[0]}}
+
+        {%endif%}
+
         {%endfor%}
 
       </td>

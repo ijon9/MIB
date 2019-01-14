@@ -4,7 +4,7 @@
 
 ## Overview
 Our project is a calendar app that allows users to plan tasks or events on specific days on the calendar. 
--User can include many details like the date, time, location, and duration of the event, or tasks to be completed on a certain day. 
--Users will be able to customize reminders that inform them about upcoming dates. 
--Users can also add other users as friends to notify them of your public events, and allow them to RSVP
+- User can include many details like the date, time, location, and duration of the event, or tasks to be completed on a certain day. 
+- Users will be able to customize reminders that inform them about upcoming dates. 
+- Users can also add other users as friends to notify them of your public events, and allow them to RSVP
 

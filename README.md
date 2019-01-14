@@ -33,11 +33,9 @@ Prepare API Keys:
 - Load the keys into `keys.json`.
 ```
 {
-    "news":"<Insert key here>",
+    "holiday":"<Insert key here>",
     "weather":"<Insert key here>",
-    "traffic":"<Insert key here>",
-    "commuteID":"<Insert key here>",
-    "commuteCode":"<Insert key here>"
+    "traffic":"<Insert key here>"
 }
 ```
 
@@ -45,3 +43,14 @@ To run the app:
 ```
 (venv)$python app.py
 ```
+
+## API Information
+- Traffic: https://developer.mapquest.com/documentation/traffic-api/
+- Weather: https://darksky.net/dev
+- Holiday: https://holidayapi.pl/
+
+## Dependencies: 
+- Flask: Runs the web application on local host.
+- Wheel: Used for Flask.
+- SQLite: Creates databases for storing information.
+- URLLib3: Receives information from APIs.

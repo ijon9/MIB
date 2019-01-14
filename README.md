@@ -33,11 +33,9 @@ Prepare API Keys:
 - Load the keys into `keys.json`.
 ```
 {
-    "news":"<Insert key here>",
+    "holiday":"<Insert key here>",
     "weather":"<Insert key here>",
-    "traffic":"<Insert key here>",
-    "commuteID":"<Insert key here>",
-    "commuteCode":"<Insert key here>"
+    "traffic":"<Insert key here>"
 }
 ```
 

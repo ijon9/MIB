@@ -3,6 +3,7 @@ import sqlite3, calendar
 
 DB_FILE = "data/database.db"
 
+
 def get_todo(user, month, day, year):
     """Returns the to-do list for a specific day"""
     db = sqlite3.connect(DB_FILE)
@@ -14,13 +15,16 @@ def get_todo(user, month, day, year):
 
 def get_calendar(year, month, user):
     cal = calendar.Calendar(6).monthdatescalendar(year, month)
-    calendar = []
+    monthcalendar = {}
     w = 0
     d = 0
     for week in cal:
-        calendar[w] = {}
+        monthcalendar[w] = {}
         w = w+1
         d = 0
         for day in week:
-            calendar[w][d] = [day[2], get_todo(user, year, month, day[2])
-            d = d + 1
+            monthcalendar[w][d] = [day.day, get_todo(user, year, month, day.day)]
+            d = d+1
+    return monthcalendar
+
+print(get_calendar(2019, 1, "cool"))

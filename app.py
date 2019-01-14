@@ -7,7 +7,11 @@ import datetime
 
 from flask import Flask, render_template, session, request, url_for, redirect, flash
 
+<<<<<<< HEAD
 from util import auth, calendar
+=======
+from util import auth,getters,adders,account
+>>>>>>> 00fc68080f247255a45de182eb9c67ed0ee604af
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -27,7 +31,11 @@ def home():
         return redirect(url_for("login"))
     if "username" not in session:
         return redirect(url_for("login"))
-    return render_template("home.html", todo = [["1", "Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"], ["2","Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"], ["3","Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"]])
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    return render_template("home.html", avatar=avatar,display= display,todo = [["1", "Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"], ["2","Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"], ["3","Doctor's Appointment", "In 3 Hours", "Eye appointment located in Long Island. Lots of Traffic"]])
 
 @app.route("/login")
 def login():
@@ -36,11 +44,39 @@ def login():
     return render_template("login.html")
 
 @app.route("/calendar")
+<<<<<<< HEAD
 def cal():
     date = datetime.date.today().isocalendar()
     month = calendar.get_calendar(date[0], date[1])
     return render_template("calendar.html",month = month)
 
+=======
+def calendar():
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    return render_template("calendar.html",avatar=avatar,display=display)
+@app.route("/account",methods=["POST","GET"])
+def acc():
+    if "username" not in session:
+        return redirect(url_for("login"))
+    if "dischange" in request.form:
+        message=account.change_display(session["username"],request.form["display"])
+        flash(message)
+    if "picchange" in request.form:
+        message=account.change_avatar(session["username"],request.form["pic"])
+        flash(message)
+    if "passchange" in request.form:
+        message=account.change_password(session["username"],request.form["oldpass"],request.form["newpass"],request.form["cnewpass"])
+        print(message)
+        flash(message)
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    return render_template("account.html",avatar=avatar,display=display)
+>>>>>>> 00fc68080f247255a45de182eb9c67ed0ee604af
 
 @app.route("/logout")
 def logout():

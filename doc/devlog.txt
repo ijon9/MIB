@@ -72,6 +72,12 @@ mohammedJ -- 2019-01-10 00:02
 -Added functions to get traffic and geocode addresses to apihelp.py
 ==============================================================
 
+mohammedU -- 2019-01-10 12:20
+--------------------------------------------------------------
+Added register/login functions
+Added functions to change account settings like password, display name, and avatar 
+==============================================================
+
 britniC -- 2019-01-10 22:20
 --------------------------------------------------------------
 -Fixed format on home.html, found solution to problems with
@@ -84,4 +90,27 @@ mohammedJ -- 2019-01-10 23:15
 --------------------------------------------------------------
 -Added frontend for login.html
 -Added auth.js to switch between login and register on same page
+==============================================================
+
+mohammedU -- 2019-01-11 12:20
+--------------------------------------------------------------
+Added function to get to-do list for a certain day
+==============================================================
+
+mohammedU -- 2019-01-13 19:00
+--------------------------------------------------------------
+Added functions to add friends and to change the status of friend requests
+==============================================================
+
+mohammedJ -- 2019-01-13 20:00
+--------------------------------------------------------------
+Finished Account Settings Page 
+-Added accounts.html
+-Added getters util file
+-Added new route app.py
+==============================================================
+
+mohammedU -- 2019-01-13 20:25
+--------------------------------------------------------------
+Modified the calendar table in the database and changed related functions
 ==============================================================

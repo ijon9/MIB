@@ -1,6 +1,5 @@
-# MIB - Britni Canale, Mohammed Jamil, Isaac Jon, Mohammed Uddin
-
 # EventBlox:
+### MIB - Britni Canale, Mohammed Jamil, Isaac Jon, Mohammed Uddin
 
 ## Overview
 Our project is a calendar app that allows users to plan tasks or events on specific days on the calendar. 

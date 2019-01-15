@@ -31,6 +31,10 @@ def get_public():
     c = db.cursor()
     return c.execute("SELECT name,month,day,year,clock,location,description FROM calendar WHERE public = 1").fetchall()
 
-listies = get_public()
-for thing in listies:
-    print(thing[0] + thing[1] + thing[2] + thing[3] + thing[4] + thing[5] + thing[6])
+def get_event(user, name, month, day, year, clock):
+    """
+        Returns a list of information about a specific event
+    """
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    return c.execute("SELECT location,description,public,alert,priority FROM calendar WHERE creator = ? AND name = ? AND month = ? AND day = ? AND year = ? AND clock = ?").fetchone()

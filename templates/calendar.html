@@ -2,7 +2,33 @@
 
 {% block main %}
 
-<h4 style = "text-align:center"> Your Calendar </h4>
+<h4 style = "text-align:center"> Your Calendar </h4><br>
+
+<div class = "form-row">
+  <div class = "form-group">
+    <select id="monthselect" name = "monthselect" class="form-control">
+      <option>January</option>
+      <option>February</option>
+      <option>March</option>
+      <option>April</option>
+      <option>May</option>
+      <option>June</option>
+      <option>July</option>
+      <option>August</option>
+      <option>September</option>
+      <option>October</option>
+      <option>November</option>
+      <option>December</option>
+    </select>
+  </div>
+  <div class = "form-group">
+    <select id="yearselect" class="form-control">
+      {% for year in range(2019,2119)%}
+      <option>{{year}}</option>
+      {%endfor%}
+    </select>
+  </div>
+
 
 <table class="table table-bordered">
   <thead>

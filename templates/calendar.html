@@ -22,20 +22,30 @@
 
     {% for week in month %}
 
-    <tr>
+    <tr style = height:150px>
 
       {% for day in month[week] %}
 
-      <td href = "/todo?user={{user}}&month={{m}}+&day={{month[week][day][0]}}&year={{y}}">
 
-        <h7 style = "color:black"> {{month[week][day][0]}}</h7><br>
+
+      <td style = "width:14%">
+
+        <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{m}}+&day={{month[week][day][0]}}&year={{y}}">
+
+        <div style = "color:black; text-align:left">
+
+        <h6 style = "color:black"> {{month[week][day][0]}}</h6>
 
         {%for item in month[week][day][1]%}
 
-        {{item[4]}} {{item[0]}}
+        {{item[4]}} {{item[0]}}<br>
 
 
         {%endfor%}
+
+        </div>
+
+      </a>
 
       </td>
 

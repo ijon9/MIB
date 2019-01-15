@@ -96,16 +96,24 @@ def acc():
     return render_template("account.html",avatar=avatar,display=display)
 
 
-@app.route("todo", methods=["GET"])
+@app.route("/todo", methods=["GET"])
 def todo():
     if "username" not in session:
         return redirect(url_for("login"))
     month = request.args["month"]
     day = request.args["day"]
     year = request.args["year"]
+    if int(month)<10:
+        month="0"+month
+    month=month[0:-1]
+    if int(day)<10:
+        day="0"+str(day)
+    else:
+        day=str(day)
     todolist = calendar.get_todo(session["username"], month, day, year)
     print(todolist)
-    return render_template("todo.html", m = month, d = day, year = year, user = session["username"])
+    print(month+ "-" + day + "-" + year)
+    return render_template("todo.html", m = month, d = day, year = year, user = session["username"], todo = todolist)
 
 @app.route("/logout")
 def logout():

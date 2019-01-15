@@ -135,14 +135,16 @@ def add():
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     return render_template("add.html",display=display,avatar=avatar)
 
-@app.route("/requests")
+@app.route("/requests", methods=["GET", "POST"])
 def frq():
     incoming = []
     outgoing = []
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
     if "username" in session:
         incoming = friends.incoming(session["username"])
         outgoing = friends.outgoing(session["username"])
-    return render_template("requests.html", inc=incoming, out = outgoing)
+    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar)
 
 if __name__== "__main__":
     app.debug = True

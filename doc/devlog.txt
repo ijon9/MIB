@@ -147,3 +147,12 @@ britniC -- 2019-01-14 12:33
  having issues with alerts
 -Added todo.html
 ==============================================================
+
+britniC -- 2019-01-14 20:30
+--------------------------------------------------------------
+-Made each date in calendar a link to that day's to-do list
+-Added selectors on calendar for month and year, haven't
+ implemented yet
+-Added modal as deleting items confirmation, doesn't work at
+ the moment
+==============================================================

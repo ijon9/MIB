@@ -42,3 +42,13 @@ def get_calendar(year, month, user):
         w = w+1
     print(monthcalendar)
     return monthcalendar
+
+def remove_event(user, name, month, day, year, clock):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "DELETE FROM calendar WHERE creator == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"
+    args = (user,name,year,month,day,clock,)
+    c.execute(command,args)
+    db.commit()
+    db.close()
+    

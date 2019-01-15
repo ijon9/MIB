@@ -157,6 +157,13 @@ def frq():
     if "username" in session:
         incoming = friends.incoming(session["username"])
         outgoing = friends.outgoing(session["username"])
+    for req in incoming:
+        if "acc" + req[0] in request.form:
+            friends.accept_friend(req[0], session["username"])
+            incoming.remove(req)
+        if "ign" + req[0] in request.form:
+            friends.ignore_friend(req[0], session["username"])
+            incoming.remove(req)
     return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar)
 
 if __name__== "__main__":

@@ -53,7 +53,20 @@ def home():
         day=str(date.day)
     todo = calendar.get_todo(session["username"], month, day, year)
     print(todo)
-    return render_template("home.html", avatar=avatar,display= display,todo = todo)
+    return render_template("home.html", avatar=avatar,display= display,todo = todo, m = month, d = day, y = year)
+
+
+@app.route("/todoitem", methods=["GET"])
+def todoitem():
+    if "username" in session:
+        return redirect(url_for("login"))
+    title = request.args["title"]
+    month = request.args["month"]
+    day = request.args["day"]
+    year = request.args["year"]
+    time = request.args["time"]
+    item = ["Stuff", "More Stuff"]#get_event(session["username"], title , month, day, year, time)
+    return render_template("todoitem.html", item = item, title = title, month= month, day = day, year= year, time = time )
 
 @app.route("/login")
 def login():

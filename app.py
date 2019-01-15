@@ -7,7 +7,7 @@ import datetime
 
 from flask import Flask, render_template, session, request, url_for, redirect, flash
 
-from util import auth,getters,adders,account, calendar
+from util import auth,getters,adders,account, calendar, friends
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -137,7 +137,12 @@ def add():
 
 @app.route("/requests")
 def frq():
-    return render_template("requests.html")
+    incoming = []
+    outgoing = []
+    if "username" in session:
+        incoming = friends.incoming(session["username"])
+        outgoing = friends.outgoing(session["username"])
+    return render_template("requests.html", inc=incoming, out = outgoing)
 
 if __name__== "__main__":
     app.debug = True

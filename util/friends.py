@@ -21,3 +21,13 @@ def friend_list():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     return c.execute("SELECT display FROM accts").fetchall()
+
+def outgoing(user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    return c.execute("SELECT friend FROM friends WHERE username == ? AND accepted == ?",(user, 0)).fetchall()
+
+def incoming(user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    return c.execute("SELECT username FROM friends WHERE friend == ? AND accepted == ?",(user, 0)).fetchall()

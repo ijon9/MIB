@@ -156,3 +156,9 @@ britniC -- 2019-01-14 20:30
 -Added modal as deleting items confirmation, doesn't work at
  the moment
 ==============================================================
+
+isaacJ -- 2019-01-14 22:53
+--------------------------------------------------------------
+-Added Friend Requests Page where users can see incoming and
+outgoing requests
+==============================================================

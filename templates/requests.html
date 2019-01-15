@@ -1,0 +1,52 @@
+{%extends "home.html"%}
+{%block title%}Account{%endblock%}
+{%block main%}
+{% set msgs = get_flashed_messages() %}
+{% for each in msgs %}
+<br>
+<div class="alert alert-primary" role="alert">{{each}} </div>
+
+{% endfor %}
+
+<h1 style="text-align: center">Requests</h1>
+<br>
+<h2> Incoming Requests </h2>
+<div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      {% for each in inc%}
+        <a class="list-group-item list-group-item-action active" id="list-{{each[0]}}-list" data-toggle="list" href="#list-{{each[0]}}" role="tab" aria-controls="{{each[0]}}">{{each[0]}}</a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+    {% for each in inc%}
+      <div class="tab-pane fade show active" id="list-{{each[0]}}" role="tabpanel" aria-labelledby="list-{{each[0]}}-list">Hi {{each[0]}}!</div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+<br>
+
+
+
+<h2> Outgoing Requests </h2>
+<div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      {% for each in out %}
+        <a class="list-group-item list-group-item-action active" id="list-{{each[0]}}-list" data-toggle="list" href="#list-{{each[0]}}" role="tab" aria-controls="{{each[0]}}">{{each[0]}}</a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+    {% for each in out %}
+      <div class="tab-pane fade show active" id="list-{{each[0]}}" role="tabpanel" aria-labelledby="list-{{each[0]}}-list">Hi {{each[0]}}!</div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+{%endblock%}

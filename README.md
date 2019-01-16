@@ -33,9 +33,9 @@ Prepare API Keys:
 - Load the keys into `keys.json`.
 ```
 {
-    "weather":"<Insert key here>",
-    "traffic":"<Insert key here>",
-    "locationIQ":"<Insert key here>"
+    "darkSky":"<Insert key here>",
+    "location":"<Insert key here>",
+    "traffic":"<Insert key here>"
 }
 ```
 

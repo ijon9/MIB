@@ -4,6 +4,7 @@ import random
 import os
 import ssl
 import datetime
+import time
 
 from flask import Flask, render_template, session, request, url_for, redirect, flash
 
@@ -242,14 +243,28 @@ def shared():
         return redirect(url_for("login"))
     public=getters.get_public()
     maplist=[]
+    publicpages=[]
+    i=0
+    while i+3<len(public):
+        print(public[i:i+3])
+        publicpages.append(public[i:i+3])
+        i+=3
+    publicpages.append(public[i:])
+    active=0
+    if "pages" not in request.args:
+        public=publicpages[0]
+    else:
+        public=publicpages[int(request.args["pages"])-1]
+        active=int(request.args["pages"])
     for event in public:
         maplist.append(apihelp.getMap(event[6]))
+        time.sleep(0.35)
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    
-    return render_template("shared.html",public=public,maplist=maplist,display=display,avatar=avatar)
+
+    return render_template("shared.html",public=public,maplist=maplist,display=display,avatar=avatar,pages=publicpages,active=active)
 if __name__== "__main__":
     app.debug = True
 app.run()

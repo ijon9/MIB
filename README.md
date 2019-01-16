@@ -25,7 +25,7 @@ Run this command in our app’s home directory to install all necessary dependen
 
 Prepare the database by running:
 ```
-python resetdb.py
+python table.py
 ```
 
 Prepare API Keys:

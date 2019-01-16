@@ -53,7 +53,7 @@ def getGeocode(address):
     '''
     url = "https://us1.locationiq.com/v1/search.php"
     with open("key_locationIq.json") as f:
-        locationKey = "3228e551e787f2"
+        locationKey = json.load(f)["location"]
     data = {
         'key': locationKey,
         'q': address,
@@ -90,5 +90,3 @@ def getMap(address):
     loc=getGeocode(address)
     url="https://maps.locationiq.com/v2/staticmap?key={0}&center={1}&zoom:10&markers={2}|icon:large-red-cutout".format(locationKey,str(loc[0])+","+str(loc[1]),str(loc[0])+","+str(loc[1]))
     return url
-
-

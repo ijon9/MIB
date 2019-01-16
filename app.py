@@ -172,13 +172,17 @@ def frq():
 def res():
     if "username" not in session:
         return redirect(url_for("login"))
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     if "sendR" in request.form:
         friends.friend_request(session["username"], request.form["sendR"])
-        redirect(url_for("frq"))
+        flash("You have sent a friend request to " + request.form["sendR"] + "!")
     elif "searchRes" in request.form:
         result = friends.get_results(request.form["search"])
-        return render_template("results.html", entry=request.form["search"], result=result)
-    return render_template("results.html")
+        return render_template("results.html", entry=request.form["search"], result=result, display=display, avatar=avatar)
+    return render_template("results.html", display=display, avatar=avatar)
 if __name__== "__main__":
     app.debug = True
 app.run()

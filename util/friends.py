@@ -27,7 +27,7 @@ def ignore_friend(user1, user2):
 def outgoing(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    return c.execute("SELECT friend FROM friends WHERE username == ? AND accepted == ?",(user, 0)).fetchall()
+    return c.execute("SELECT friend FROM friends WHERE username == ? AND accepted == ? OR accepted == ?",(user, 0, 3,)).fetchall()
 
 def incoming(user):
     db = sqlite3.connect(DB_FILE)

@@ -162,6 +162,7 @@ def frq():
         if "acc" + req[0] in request.form:
             friends.accept_friend(req[0], session["username"])
             incoming.remove(req)
+            flash("You and " + req[0] + " are now friends!")
         if "ign" + req[0] in request.form:
             friends.ignore_friend(req[0], session["username"])
             incoming.remove(req)

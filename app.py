@@ -174,7 +174,7 @@ def res():
     if "sendR" in request.form:
         friends.friend_request(session["username"], request.form["sendR"])
         redirect(url_for("frq"))
-    if "searchRes" in request.form:
+    elif "searchRes" in request.form:
         result = friends.get_results(request.form["search"])
     return render_template("results.html", entry=request.form["search"], result=result)
 if __name__== "__main__":

@@ -49,7 +49,10 @@ def home():
         print("Success priority")
         private = request.args["private"]
         print("Success private")
-        alerts = request.args["Alerts"]
+        if "Alerts" in request.args.keys():
+            alerts = request.args["Alerts"]
+        else:
+            alerts = "off"
         print("Success alerts")
         adders.add_event(session["username"], title, day, year, month, time, address, description, private, alerts, priority)
         print("Added")

@@ -140,6 +140,10 @@ mohammedJ -- 2019-01-14 01:24
 -Fixed issues with Calendar
 ==============================================================
 
+mohammedU -- 2019-01-14 12:30
+--------------------------------------------------------------
+Added .gitignore file and cleaned repository of pycache files
+==============================================================
 
 britniC -- 2019-01-14 12:33
 --------------------------------------------------------------
@@ -163,6 +167,11 @@ isaacJ -- 2019-01-14 22:53
 outgoing requests
 ==============================================================
 
+mohammedU -- 2019-01-15 12:30
+--------------------------------------------------------------
+Added functions to get information about a specific event and to edit the information for an event
+==============================================================
+
 britniC -- 2019-01-15 12:38
 --------------------------------------------------------------
 -Added new page for specific items, will be linked to todo
@@ -177,7 +186,14 @@ britniC -- 2019-01-15 21:47
 -Encountering issues with add
 ==============================================================
 
+
 britniC -- 2019-01-15 21:47
 --------------------------------------------------------------
 -Implementing edit with database
+
+mohammedU -- 2019-01-16 12:30
+--------------------------------------------------------------
+Changed columns in database tables to relate them togerhter
+Fixed bug where events could not be added without checking alerts on
+
 ==============================================================

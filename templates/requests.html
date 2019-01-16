@@ -22,7 +22,13 @@
   <div class="col-8">
     <div class="tab-content" id="nav-tabContent">
     {% for each in inc%}
-      <div class="tab-pane fade show active" id="list-{{each[0]}}" role="tabpanel" aria-labelledby="list-{{each[0]}}-list">Hi {{each[0]}}!</div>
+      <div class="tab-pane fade show active" id="list-{{each[0]}}" role="tabpanel" aria-labelledby="list-{{each[0]}}-list">
+        Hi {{display}}! <br> {{each[0]}} would like to add you as a friend! <br>
+      <form action="/requests" method="POST">
+        <button type="submit" class="btn btn-success" name="acc{{each[0]}}">Accept</button>
+        <button type="submit" class="btn btn-danger" name="ign{{each[0]}}">Ignore</button>
+      </form>
+      </div>
     {% endfor %}
     </div>
   </div>

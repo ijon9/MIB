@@ -162,3 +162,10 @@ isaacJ -- 2019-01-14 22:53
 -Added Friend Requests Page where users can see incoming and
 outgoing requests
 ==============================================================
+
+britniC -- 2019-01-15 12:38
+--------------------------------------------------------------
+-Added new page for specific items, will be linked to todo
+ list using query string
+-Fixed calendar display to show correct month
+==============================================================

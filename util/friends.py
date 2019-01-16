@@ -13,7 +13,14 @@ def friend_request(user1, user2):
 def accept_friend(user1, user2):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("UPDATE friends SET accepted = 1 WHERE user1 == ? AND user2 == ? OR user1 == ? AND user2 == ?",(user1,user2,user2,user1,))
+    c.execute("UPDATE friends SET accepted = 1 WHERE username == ? AND friend == ?",(user1,user2,))
+    db.commit()
+    db.close()
+
+def ignore_friend(user1, user2):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("UPDATE friends SET accepted = 3 WHERE username == ? AND friend == ?",(user1,user2,))
     db.commit()
     db.close()
 

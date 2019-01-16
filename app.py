@@ -53,7 +53,20 @@ def home():
         day=str(date.day)
     todo = calendar.get_todo(session["username"], month, day, year)
     print(todo)
-    return render_template("home.html", avatar=avatar,display= display,todo = todo)
+    return render_template("home.html", avatar=avatar,display= display,todo = todo, m = month, d = day, y = year)
+
+
+@app.route("/todoitem", methods=["GET"])
+def todoitem():
+    if "username" in session:
+        return redirect(url_for("login"))
+    title = request.args["title"]
+    month = request.args["month"]
+    day = request.args["day"]
+    year = request.args["year"]
+    time = request.args["time"]
+    item = ["Stuff", "More Stuff"]#get_event(session["username"], title , month, day, year, time)
+    return render_template("todoitem.html", item = item, title = title, month= month, day = day, year= year, time = time )
 
 @app.route("/login")
 def login():
@@ -65,14 +78,14 @@ def login():
 def cal():
     if "username" not in session:
         return redirect(url_for("login"))
-    date = datetime.date.today().isocalendar()
+    date = datetime.date.today()
     print(date)
-    month = calendar.get_calendar(date[0], date[2], session["username"])
+    month = calendar.get_calendar(date.year, date.month, session["username"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("calendar.html",avatar=avatar,display=display, month = month, y =date[0], m = date[2])
+    return render_template("calendar.html",avatar=avatar,display=display, month = month, y =date.year, m = date.month)
 
 
 @app.route("/account",methods=["POST","GET"])
@@ -135,14 +148,23 @@ def add():
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     return render_template("add.html",display=display,avatar=avatar)
 
-@app.route("/requests")
+@app.route("/requests", methods=["GET", "POST"])
 def frq():
     incoming = []
     outgoing = []
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
     if "username" in session:
         incoming = friends.incoming(session["username"])
         outgoing = friends.outgoing(session["username"])
-    return render_template("requests.html", inc=incoming, out = outgoing)
+    for req in incoming:
+        if "acc" + req[0] in request.form:
+            friends.accept_friend(req[0], session["username"])
+            incoming.remove(req)
+        if "ign" + req[0] in request.form:
+            friends.ignore_friend(req[0], session["username"])
+            incoming.remove(req)
+    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar)
 
 if __name__== "__main__":
     app.debug = True

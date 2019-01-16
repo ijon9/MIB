@@ -30,14 +30,25 @@ python util/table.py
 
 Prepare API Keys:
 - Acquire API keys for those found in [API Information](#API-Information)
-- Load the keys into `keys.json`.
+- Load into the seperate files for each api in the keys folder keys:
+
 ```
+key_darkSky.json:
 {
     "darkSky":"<Insert key here>",
-    "location":"<Insert key here>",
+}
+key_traffic.json:
+{
     "traffic":"<Insert key here>"
 }
+key_locationIq.json:
+{
+    "location":"<Insert Key Here>"
+}
 ```
+- Then move each file into the <root>/util
+
+
 
 To run the app: 
 ```

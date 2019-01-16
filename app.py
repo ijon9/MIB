@@ -176,7 +176,8 @@ def res():
         redirect(url_for("frq"))
     elif "searchRes" in request.form:
         result = friends.get_results(request.form["search"])
-    return render_template("results.html", entry=request.form["search"], result=result)
+        return render_template("results.html", entry=request.form["search"], result=result)
+    return render_template("results.html")
 if __name__== "__main__":
     app.debug = True
 app.run()

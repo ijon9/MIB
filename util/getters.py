@@ -1,4 +1,4 @@
-userfrom flask import Flask
+from flask import Flask
 import sqlite3
 
 DB_FILE = "data/database.db"

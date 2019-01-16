@@ -61,9 +61,11 @@
     Public
   </label>
 </div>
+
+{%set value = "additems"%}
 <div class = "form-row">
   <div class = "form-group">
-    <button type = "submit" class = "btn btn-dark" id="additems" name = "additems"> {%block button%} Add Event {%endblock%}</button>
+    <button type = "submit" class = "btn btn-dark" id="{{value}}" name = "additems"> {%block button%} Add Event {%endblock%}</button>
   </div>
   <div class = "form-group">
     <a class = "btn btn-dark" role = "button" href = "/"> Cancel </a>

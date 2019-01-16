@@ -50,10 +50,26 @@ def home():
         print("Success priority")
         private = request.args["private"]
         print("Success private")
-        alerts = request.args["Alerts"]
+        if "Alerts" in request.args.keys():
+            alerts = request.args["Alerts"]
+        else:
+            alerts = "off"
         print("Success alerts")
         adders.add_event(session["username"], title, day, year, month, time, address, description, private, alerts, priority)
         print("Added")
+    '''if "edititems" in request.args:
+        info = [,,,,,,,,,]
+        date=request.args["Date"].split("-")
+        info[0] = request.args["Title"]
+        info[1] = request.args[""]
+        info[2] = request.args[
+        info[3] = request.args[
+        info[4] = request.args[
+        info[5] = request.args[
+        info[6] = request.args[
+        info[7] = request.args[
+        info[8] = request.args[
+        info[9] = request.args['''
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
@@ -187,7 +203,7 @@ def add():
 def edit():
     if "username" not in session:
         return redirect(url_for("login"))
-    date = request.args["month"]+"/"+request.args["day"]+"/"+request.args["year"]
+    date = request.args["year"]+"-"+request.args["month"]+"-"+request.args["day"]
     description = request.args["description"]
     time = request.args["time"]
     title = request.args["title"]

@@ -1,4 +1,4 @@
-from flask import Flask
+userfrom flask import Flask
 import sqlite3
 
 DB_FILE = "data/database.db"
@@ -29,7 +29,7 @@ def get_public():
     """
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    return c.execute("SELECT creator,name,month,day,year,clock,location,description FROM calendar WHERE public = public").fetchall()
+    return c.execute("SELECT user,name,month,day,year,clock,location,description FROM calendar WHERE public = public").fetchall()
 
 def get_event(user, name, month, day, year, clock):
     """

@@ -10,7 +10,7 @@ def get_todo(user, month, day, year):
     """Returns the to-do list for a specific day"""
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT name,month,day,year,clock,location,description FROM calendar WHERE creator == ? AND year == ? AND month == ? AND day == ?"
+    command = "SELECT name,month,day,year,clock,location,description FROM calendar WHERE user == ? AND year == ? AND month == ? AND day == ?"
     args = (user,year,month,day,)
     return c.execute(command,args).fetchall()
 
@@ -46,7 +46,7 @@ def get_calendar(year, month, user):
 def remove_event(user, name, month, day, year, clock):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "DELETE FROM calendar WHERE creator == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"
+    command = "DELETE FROM calendar WHERE user == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"
     args = (user,name,year,month,day,clock,)
     c.execute(command,args)
     db.commit()
@@ -55,7 +55,7 @@ def remove_event(user, name, month, day, year, clock):
 def edit_event(user, name, month, day, year, clock, info):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "UPDATE calendar SET name = ?,month = ?,day = ?,year = ?,clock = ?,location = ?,description = ?,public = ?,alert = ?,priority = ? WHERE creator == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"
+    command = "UPDATE calendar SET name = ?,month = ?,day = ?,year = ?,clock = ?,location = ?,description = ?,public = ?,alert = ?,priority = ? WHERE user == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"
     args = (info[0],info[1],info[2],info[3],info[4],info[5],info[6],info[7],info[8],info[9],user,name,month,day,year,clock)
     db.commit()
     db.close()

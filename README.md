@@ -48,6 +48,7 @@ To run the app:
 - Weather: https://darksky.net/dev
 - Traffic: https://developer.mapquest.com/documentation/traffic-api/
 - LocationIQ: https://locationiq.com/docs
+- Holiday: https://holidayapi.pl/ (key not needed)
 
 ## Dependencies: 
 - Flask: Runs the web application on local host.

@@ -37,7 +37,7 @@
 
     {% block main%}
 
-    <h4 style = "text-align:center; color:black"> Welcome, {{user}} </h4> <br>
+    <h4 style = "text-align:center; color:black"> Welcome, {{display}} </h4> <br>
 
         {% set msgs = get_flashed_messages() %}
 
@@ -54,7 +54,7 @@
 
         {% for each in msgs %}
 
-          <div class="alert" role="alert-primary">{{each}} </div>
+          <div class="alert alert-success" role="alert">{{each}} </div>
 
         {% endfor %}
 

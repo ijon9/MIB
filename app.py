@@ -58,19 +58,22 @@ def home():
 
 @app.route("/todoitem", methods=["GET"])
 def todoitem():
-    if "username" in session:
+    if "username" not in session:
+        print("Username not in session<br>")
         return redirect(url_for("login"))
     title = request.args["title"]
     month = request.args["month"]
     day = request.args["day"]
     year = request.args["year"]
     time = request.args["time"]
+    #priority = request.args["priority"]
     item = ["Stuff", "More Stuff"]#get_event(session["username"], title , month, day, year, time)
-    return render_template("todoitem.html", item = item, title = title, month= month, day = day, year= year, time = time )
+    return render_template("todoitem.html", item = item, title = title, month= month, day = day, year= year, time = time) #, priority = priority )
 
 @app.route("/login")
 def login():
     if "username" in session:
+        print("Username in session<br>")
         return redirect(url_for("home"))
     return render_template("login.html")
 
@@ -147,6 +150,20 @@ def add():
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     return render_template("add.html",display=display,avatar=avatar)
+
+@app.route("/edit", methods=["GET"])
+def edit():
+    if "username" not in session:
+        return redirect(url_for("login"))
+    date = request.args["month"]+"/"+request.args["day"]+"/"+request.args["year"]
+    description = request.args["description"]
+    time = request.args["time"]
+    title = request.args["title"]
+    address = request.args["location"]
+    #priority = request.args["priority"]
+    return render_template("edit.html", date = date, description = description, time = time, title = title, address = address) #, priority = priority)
+
+
 
 @app.route("/requests", methods=["GET", "POST"])
 def frq():

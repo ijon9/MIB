@@ -15,7 +15,7 @@
 
 {% for each in todo %}
 
-<a href="#" class="list-group-item list-group-item-action">
+<a href="/todoitem?title={{each[0]}}&time={{each[4]}}&month={{m}}&day={{d}}&year={{year}}"  class="list-group-item list-group-item-action">
   <div class="d-flex w-100 justify-content-between">
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id={{each[0]}}>

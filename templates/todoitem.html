@@ -2,11 +2,39 @@
 
 {%block main%}
 
-<h4> {{title}} </h4>
+<h4> {{title}} </h4><br>
 
-Date: {{month}}-{{day}}-{{year}}
-Time: {{time}}
-Description: {{description}}
-Location: {{location}}
+<table class = "table table-borderless">
+  <tbody>
+    <tr>
+      <th> Name </th>
+      <th> {{title}} </th>
+    </tr>
+    <tr>
+      <th> Description </th>
+      <th> {{description}} </th>
+    </tr>
+    <tr>
+      <th> Date </th>
+      <th> {{month}}-{{day}}-{{year}} </th>
+    </tr>
+    <tr>
+      <th> Time </th>
+      <th> {{time}} </th>
+    </tr>
+    <tr>
+      <th> Location </th>
+      <th> {{location}} </th>
+    </tr>
+    <tr>
+      <th> Priority </th>
+      <th> {{priority}} </th>
+    </tr>
+</tbody>
+</table>
+
+<a role="button" class="btn btn-dark" href="#">Mark as Complete</a>
+<a role="button" class="btn btn-dark" href="#">Delete</a>
+<a role="button" class="btn btn-dark" href="/edit?title={{title}}&description={{description}}&month={{month}}&day={{day}}&year={{year}}&time={{time}}&location={{location}}&priority={{priority}}">Edit</a>
 
 {%endblock%}

@@ -37,6 +37,6 @@ def get_event(user, name, month, day, year, clock):
     """
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT location,description,public,alert,priority FROM calendar WHERE creator = ? AND name = ? AND month = ? AND day = ? AND year = ? AND clock = ?"
+    command = "SELECT location,description,public,alert,priority FROM calendar WHERE user = ? AND name = ? AND month = ? AND day = ? AND year = ? AND clock = ?"
     args = (user, name, month, day, year, clock)
     return c.execute(command, args).fetchone()

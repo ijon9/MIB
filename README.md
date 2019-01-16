@@ -46,7 +46,7 @@ key_locationIq.json:
     "location":"<Insert Key Here>"
 }
 ```
-- Then move each file into the root/util directory
+- Then move each file into the root directory
 
 
 

@@ -7,7 +7,7 @@ import datetime
 
 from flask import Flask, render_template, session, request, url_for, redirect, flash
 
-from util import auth,getters,adders,account, calendar, friends
+from util import auth,getters,adders,account, calendar, friends,apihelp
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -29,32 +29,29 @@ def home():
         return redirect(url_for("login"))
     if "additems" in request.args:
         print(request.args)
-        try:
-            date=request.args["Date"].split("-")
-            print("Success Date")
-            title = request.args["Title"]
-            print("Success Title")
-            day = date[1]
-            print("Success Day")
-            year = date[2]
-            print("Success year")
-            month = [0]
-            print("Success Month")
-            time = request.args["Time"]
-            print("Success Time")
-            address = request.args["Address"]
-            print("Success Address")
-            description = request.args["Description"]
-            print("Sucess Description")
-            priority = request.args["priority"]
-            print("Success priority")
-            private = request.args["private"]
-            print("Success private")
-            alerts = request.args["Alerts"]
-            print("Success alerts")
-            adders.add_event(session["username"], title, day, year, month, time, address, description, private, alerts, priority)
-        except:
-            flash("Something went wrong")
+        date=request.args["Date"].split("-")
+        print("Success Date")
+        title = request.args["Title"]
+        print("Success Title")
+        day = date[1]
+        print("Success Day")
+        year = date[2]
+        print("Success year")
+        month = date[0]
+        print("Success Month")
+        time = request.args["Time"]
+        print("Success Time")
+        address = request.args["Address"]
+        print("Success Address")
+        description = request.args["Description"]
+        print("Sucess Description")
+        priority = request.args["priority"]
+        print("Success priority")
+        private = request.args["private"]
+        print("Success private")
+        alerts = request.args["Alerts"]
+        print("Success alerts")
+        adders.add_event(session["username"], title, day, year, month, time, address, description, private, alerts, priority)
         print("Added")
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
@@ -95,7 +92,11 @@ def todoitem():
     item["public"] = additional[2]
     item["alert"] = additional[3]
     item["priority"] = additional[4]
-    return render_template("todoitem.html", item = item)
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    return render_template("todoitem.html", item = item,display=display,avatar=avatar)
 
 @app.route("/login")
 def login():
@@ -155,7 +156,11 @@ def todo():
     todolist = calendar.get_todo(session["username"], month, day, year)
     print(todolist)
     print(month+ "-" + day + "-" + year)
-    return render_template("todo.html", m = month, d = day, year = year, user = session["username"], todo = todolist)
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    return render_template("todo.html", m = month, d = day, year = year, user = session["username"], todo = todolist,display=display,avatar=avatar)
 
 @app.route("/logout")
 def logout():
@@ -187,8 +192,11 @@ def edit():
     title = request.args["title"]
     address = request.args["location"]
     priority = request.args["priority"]
-
-    return render_template("edit.html", date = date, description = description, time = time, title = title, address = address, priority = priority)
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    return render_template("edit.html", date = date, description = description, time = time, title = title, address = address, priority = priority,display=display,avatar=avatar)
 
 
 
@@ -227,6 +235,21 @@ def res():
         result = friends.get_results(request.form["search"])
         return render_template("results.html", entry=request.form["search"], result=result, display=display, avatar=avatar)
     return render_template("results.html", display=display, avatar=avatar)
+
+@app.route("/shared",methods=["GET", "POST"])
+def shared():
+    if "username" not in session:
+        return redirect(url_for("login"))
+    public=getters.get_public()
+    maplist=[]
+    for event in public:
+        maplist.append(apihelp.getMap(event[6]))
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    
+    return render_template("shared.html",public=public,maplist=maplist,display=display,avatar=avatar)
 if __name__== "__main__":
     app.debug = True
 app.run()

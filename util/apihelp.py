@@ -35,7 +35,7 @@ def weather(location,time):
         The locations should be a tuple containting the longitude and latitude for example (latitude, longitude)
         The time should be a datetime object
     '''
-    with open("keys.json") as f:
+    with open("/key_darkSky.json") as f:
         DarkSkyKey = json.load(f)["darkSky"]
     time=datify(time)
     r=requests.get("https://api.darksky.net/forecast/{0}/{1},{2},{3}".format(DarkSkyKey,location[0],location[1],time))
@@ -52,8 +52,8 @@ def getGeocode(address):
         Returns the longitude and latitude for a given address
     '''
     url = "https://us1.locationiq.com/v1/search.php"
-    with open("keys.json") as f:
-        locationKey = json.load(f)["location"]
+    with open("key_locationIq.json") as f:
+        locationKey = "3228e551e787f2"
     data = {
         'key': locationKey,
         'q': address,
@@ -70,7 +70,7 @@ def traffic(location):
         Returns traffic incidents near a given location
     '''
     url="https://www.mapquestapi.com/traffic/v2/incidents"
-    with open("keys.json") as f:
+    with open("key_traffic.json") as f:
         trafficKey = json.load(f)["traffic"]
     data={
         "outFormat":"json",
@@ -84,7 +84,11 @@ def traffic(location):
     for incident in response["incidents"]:
         incidentlist.append(incident["shortDesc"])
     return incidentlist
+def getMap(address):
+    with open("key_locationIq.json") as f:
+        locationKey = "3228e551e787f2"
+    loc=getGeocode(address)
+    url="https://maps.locationiq.com/v2/staticmap?key={0}&center={1}&zoom:10&markers={2}|icon:large-red-cutout".format(locationKey,str(loc[0])+","+str(loc[1]),str(loc[0])+","+str(loc[1]))
+    return url
 
-loc=getGeocode("Stuyvesant High School")
-print(weather(loc,datetime.datetime.now()))
-print(traffic(loc))
+

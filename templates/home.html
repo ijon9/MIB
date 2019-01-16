@@ -24,7 +24,7 @@
           <a class = 'nav-link' href = "/requests" style="color:white"> Requests </a>
           <a class = 'nav-link' href = "#" style="color:white"> What's Happening </a>
           <div>
-          <a class = 'btn btn-dark' role = "button" href = "#" style="color:white;"> Logout </a>
+          <a class = 'btn btn-dark' role = "button" href = "/logout" style="color:white;"> Logout </a>
           </div>
           <div>
         </div>
@@ -90,41 +90,36 @@
 
         </div> <br><br>
 
-        <button class="btn btn-dark" data-toggle="modal" data-target="#delete">Delete Items</button>
+        <button class="btn btn-dark" id="delete" data-toggle="modal" data-target="#delete">Delete Items</button>
 
-        <!--THIS DOESN"T WORK-->
-
-        <div class="modal" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!--THIS DOES WORK-->
+        <div class="modal" tabindex="-1" id="myModal" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete these tasks?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title">Are You Sure</h5>
+                <button type="button" class="close" data-dismiss="modal" id="close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
               </div>
               <div class="modal-body">
-                Are you sure you want to delete these tasks? Doing so will permanently erase them from your calendar.
+                Are you sure you want to delete these events?
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                <form action="/">
+                  <button type="submit" class="btn btn-primary">Delete</button>
+                  <button type="button" class="btn btn-secondary" id="cancel">Cancel</button>
+                </form>
               </div>
             </div>
           </div>
         </div>
-        <script>
-          $('#delete').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var modal = $(this)
-          })
-          </script>
 
         <a role="button" class="btn btn-dark" href="/add">Add Task</a>
 
       </div>
 
-
+      <script src="{{ url_for('static', filename='modal.js') }}"></script>
       {%endblock%}
 
     </div>

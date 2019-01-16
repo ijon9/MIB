@@ -1,0 +1,14 @@
+{%extends "add.html"%}
+{%block main%}
+{{ super() }}
+{%block eventhead%} Edit Event {%endblock%}
+
+{%set title = title%}
+{%set description = description%}
+{%set time = time%}
+{%set date = date%}
+{%set address = address%}
+{%set priority = priority%}
+
+{%block button%}Edit{%endblock%}
+{%endblock%}

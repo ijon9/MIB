@@ -169,3 +169,10 @@ britniC -- 2019-01-15 12:38
  list using query string
 -Fixed calendar display to show correct month
 ==============================================================
+
+britniC -- 2019-01-15 21:47
+--------------------------------------------------------------
+-Added edit.html page
+-Completed item page
+-Encountering issues with add
+==============================================================

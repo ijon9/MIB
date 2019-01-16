@@ -31,7 +31,28 @@ def home():
         print(request.args)
         try:
             date=request.args["Date"].split("-")
-            adders.add_event(session["username"], request.args["Title"], date[1], date[2], date[0], request.args["Time"], request.args["Address"], request.args["Description"], request.args["private"], request.args["Alerts"], request.args["priority"])
+            print("Success Date")
+            title = request.args["Title"]
+            print("Success Title")
+            day = date[1]
+            print("Success Day")
+            year = date[2]
+            print("Success year")
+            month = [0]
+            print("Success Month")
+            time = request.args["Time"]
+            print("Success Time")
+            address = request.args["Address"]
+            print("Success Address")
+            description = request.args["Description"]
+            print("Sucess Description")
+            priority = request.args["priority"]
+            print("Success priority")
+            private = request.args["private"]
+            print("Success private")
+            alerts = request.args["Alerts"]
+            print("Success alerts")
+            adders.add_event(session["username"], title, day, year, month, time, address, description, private, alerts, priority)
         except:
             flash("Something went wrong")
         print("Added")
@@ -58,15 +79,23 @@ def home():
 
 @app.route("/todoitem", methods=["GET"])
 def todoitem():
-    if "username" in session:
+    if "username" not in session:
+        print("Username not in session<br>")
         return redirect(url_for("login"))
-    title = request.args["title"]
-    month = request.args["month"]
-    day = request.args["day"]
-    year = request.args["year"]
-    time = request.args["time"]
-    item = ["Stuff", "More Stuff"]#get_event(session["username"], title , month, day, year, time)
-    return render_template("todoitem.html", item = item, title = title, month= month, day = day, year= year, time = time )
+    item = {}
+    item["title"] = request.args["title"]
+    item["month"] = request.args["month"]
+    item["day"] = request.args["day"]
+    item["year"] = request.args["year"]
+    item["time"]= request.args["time"]
+    #priority = request.args["priority"]
+    additional = getters.get_event(session["username"], item["title"], item["month"], item["day"], item["year"], item["time"])
+    item["description"] = additional[1]
+    item["location"] = additional[0]
+    item["public"] = additional[2]
+    item["alert"] = additional[3]
+    item["priority"] = additional[4]
+    return render_template("todoitem.html", item = item)
 
 @app.route("/login")
 def login():
@@ -147,6 +176,21 @@ def add():
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     return render_template("add.html",display=display,avatar=avatar)
+
+@app.route("/edit", methods=["GET"])
+def edit():
+    if "username" not in session:
+        return redirect(url_for("login"))
+    date = request.args["month"]+"/"+request.args["day"]+"/"+request.args["year"]
+    description = request.args["description"]
+    time = request.args["time"]
+    title = request.args["title"]
+    address = request.args["location"]
+    priority = request.args["priority"]
+
+    return render_template("edit.html", date = date, description = description, time = time, title = title, address = address, priority = priority)
+
+
 
 @app.route("/requests", methods=["GET", "POST"])
 def frq():

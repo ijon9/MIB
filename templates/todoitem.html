@@ -2,11 +2,39 @@
 
 {%block main%}
 
-<h4> {{title}} </h4>
+<h4> {{item["title"]}} </h4><br>
 
-Date: {{month}}-{{day}}-{{year}}
-Time: {{time}}
-Description: {{description}}
-Location: {{location}}
+<table class = "table table-borderless">
+  <tbody>
+    <tr>
+      <th> Name </th>
+      <th> {{item["title"]}} </th>
+    </tr>
+    <tr>
+      <th> Description </th>
+      <th> {{item["description"]}} </th>
+    </tr>
+    <tr>
+      <th> Date </th>
+      <th> {{item["month"]}}-{{item["day"]}}-{{item["year"]}} </th>
+    </tr>
+    <tr>
+      <th> Time </th>
+      <th> {{item["time"]}} </th>
+    </tr>
+    <tr>
+      <th> Location </th>
+      <th> {{item["location"]}} </th>
+    </tr>
+    <tr>
+      <th> Priority </th>
+      <th> {{item["priority"]}} </th>
+    </tr>
+</tbody>
+</table>
+
+<a role="button" class="btn btn-dark" href="#">Mark as Complete</a>
+<a role="button" class="btn btn-dark" href="#">Delete</a>
+<a role="button" class="btn btn-dark" href="/edit?title={{item['title']}}&description={{item['description']}}&month={{item['month']}}&day={{item['day']}}&year={{item['year']}}&time={{item['time']}}&location={{item['location']}}&priority={{item['priority']}}">Edit</a>
 
 {%endblock%}

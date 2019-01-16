@@ -150,13 +150,14 @@ def add():
 
 @app.route("/requests", methods=["GET", "POST"])
 def frq():
-    incoming = []
-    outgoing = []
+    if "username" not in session:
+        return redirect(url_for("login"))
+    incoming = friends.incoming(session["username"])
+    outgoing = friends.outgoing(session["username"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
-    if "username" in session:
-        incoming = friends.incoming(session["username"])
-        outgoing = friends.outgoing(session["username"])
+    if avatar==None:
+        avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     for req in incoming:
         if "acc" + req[0] in request.form:
             friends.accept_friend(req[0], session["username"])
@@ -166,6 +167,16 @@ def frq():
             incoming.remove(req)
     return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar)
 
+@app.route("/results", methods=["GET", "POST"])
+def res():
+    if "username" not in session:
+        return redirect(url_for("login"))
+    if "sendR" in request.form:
+        friends.friend_request(session["username"], request.form["sendR"])
+        redirect(url_for("frq"))
+    if "searchRes" in request.form:
+        result = friends.get_results(request.form["search"])
+    return render_template("results.html", entry=request.form["search"], result=result)
 if __name__== "__main__":
     app.debug = True
 app.run()

@@ -24,11 +24,6 @@ def ignore_friend(user1, user2):
     db.commit()
     db.close()
 
-def friend_list():
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    return c.execute("SELECT display FROM accts").fetchall()
-
 def outgoing(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -38,3 +33,16 @@ def incoming(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     return c.execute("SELECT username FROM friends WHERE friend == ? AND accepted == ?",(user, 0)).fetchall()
+
+def get_results(entry):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    userList = c.execute("SELECT user FROM accts").fetchall()
+    possUsers = []
+    for u in userList:
+        if entry in u[0]:
+            possUsers.append(u[0])
+    res = []
+    for possU in possUsers:
+        res.append(c.execute("SELECT user,display,avatar FROM accts WHERE user == ?",(possU,)).fetchone())
+    return res

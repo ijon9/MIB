@@ -1,0 +1,32 @@
+{%extends "home.html"%}
+{%block title%}Account{%endblock%}
+{%block main%}
+{% set msgs = get_flashed_messages() %}
+{% for each in msgs %}
+<br>
+<div class="alert alert-primary" role="alert">{{each}} </div>
+
+{% endfor %}
+
+<form action="/results" method="POST">
+<div class="form-group">
+    <!-- <label for="pic">Profile Picture</label> -->
+    <input type="text" class="form-control" placeholder="Search For User"
+        name="search">
+</div>
+<button type="submit" class="btn btn-primary" name="searchRes">Search</button>
+</form>
+
+<h3 style="text-align: left"> Search Results </h3>
+
+{% for each in result %}
+Display: {{each[1]}} <br>
+User: {{each[0]}}
+<form action="/results" method="POST">
+  <button type="submit" class="btn btn-success" name="sendR" value="{{each[0]}}">Send Request</button>
+</form>
+
+{% endfor %}
+
+
+{%endblock%}

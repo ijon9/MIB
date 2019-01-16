@@ -49,7 +49,10 @@ def home():
         print("Success priority")
         private = request.args["private"]
         print("Success private")
-        alerts = request.args["Alerts"]
+        if "Alerts" in request.args.keys():
+            alerts = request.args["Alerts"]
+        else:
+            alerts = "off"
         print("Success alerts")
         adders.add_event(session["username"], title, day, year, month, time, address, description, private, alerts, priority)
         print("Added")
@@ -248,7 +251,7 @@ def shared():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    
+
     return render_template("shared.html",public=public,maplist=maplist,display=display,avatar=avatar)
 if __name__== "__main__":
     app.debug = True

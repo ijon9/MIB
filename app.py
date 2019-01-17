@@ -272,9 +272,12 @@ def frq():
     friendL = friends.friend_list(session["username"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
+    incAvatarList = {}
+    outAvatarList = {}
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     for req in incoming:
+        incAvatarList[req[0]] = account.get_avatar(req[0])
         if "acc" + req[0] in request.form:
             friends.accept_friend(req[0], session["username"])
             incoming.remove(req)
@@ -283,11 +286,12 @@ def frq():
             friends.ignore_friend(req[0], session["username"])
             incoming.remove(req)
     for req in outgoing:
+        outAvatarList[req[0]] = account.get_avatar(req[0])
         if "den" in request.form:
             if request.form["den"] == req[0]:
                 friends.request_denied(session["username"] ,req[0])
                 outgoing.remove(req)
-    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar, friendL=friendL)
+    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar, friendL=friendL, incAvatarList=incAvatarList, outAvatarList=outAvatarList)
 
 @app.route("/results", methods=["GET", "POST"])
 def res():
@@ -302,7 +306,10 @@ def res():
         flash("You have sent a friend request to " + request.form["sendR"] + "!")
     elif "searchRes" in request.form:
         result = friends.get_results(session["username"], request.form["search"])
-        return render_template("results.html", entry=request.form["search"], result=result, display=display, avatar=avatar)
+        avatarList = {}
+        for r in result:
+            avatarList[r[0][0]] = account.get_avatar(r[0][0])
+        return render_template("results.html", entry=request.form["search"], result=result, display=display, avatar=avatar, avatarList=avatarList)
     return render_template("results.html", display=display, avatar=avatar)
 
 @app.route("/shared",methods=["GET", "POST"])

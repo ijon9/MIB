@@ -11,6 +11,13 @@ def change_avatar(user, image):
     db.close()
     return "Avatar updated"
 
+def get_avatar(user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    a = c.execute("SELECT avatar FROM accts WHERE user = ?",(user,)).fetchone()
+    return a[0]
+
+
 def change_password(user, old, new, conf):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()

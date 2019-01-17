@@ -242,7 +242,14 @@ def frq():
         if "ign" + req[0] in request.form:
             friends.ignore_friend(req[0], session["username"])
             incoming.remove(req)
-    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar)
+    for req in outgoing:
+        if "den" in request.form:
+            print("den: " + request.form["den"] )
+            print("req: " + req[0] )
+            if request.form["den"] == req[0]:
+                friends.request_denied(session["username"] ,req[0])
+                outgoing.remove(req)
+    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar,)
 
 @app.route("/results", methods=["GET", "POST"])
 def res():
@@ -256,7 +263,7 @@ def res():
         friends.friend_request(session["username"], request.form["sendR"])
         flash("You have sent a friend request to " + request.form["sendR"] + "!")
     elif "searchRes" in request.form:
-        result = friends.get_results(request.form["search"])
+        result = friends.get_results(session["username"], request.form["search"])
         return render_template("results.html", entry=request.form["search"], result=result, display=display, avatar=avatar)
     return render_template("results.html", display=display, avatar=avatar)
 

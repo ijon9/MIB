@@ -1,13 +1,12 @@
 {%extends "add.html"%}
+
 {%block value%}edititems{%endblock%}
 {%block valuetwo%}edititems{%endblock%}
 {%block button%}Edit Event{%endblock%}
 {%block head%}Edit An Event{%endblock%}
-{#{%block href%}/?name={{title}}&date={{date}}&time={{time}}{%endblock%}
-#}
 
 {%block hide%}
-<input type = "hidden" name = "name" value={{title}}>
+<input type = "hidden" name = "name" value="{{title}}">
 <input type = "hidden" name = "date" value={{date}}>
 <input type = "hidden" name = "time" value={{time}}>
 {%endblock%}

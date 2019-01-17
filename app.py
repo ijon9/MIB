@@ -65,9 +65,9 @@ def home():
         info = ["","","","","","","","","",""]
         date=request.args["Date"].split("-")
         info[0] = request.args["Title"]
-        info[1] = date[0]
-        info[2] = date[1]
-        info[3] = date[2]
+        info[1] = date[1]
+        info[2] = date[2]
+        info[3] = date[0]
         info[4] = request.args["Time"]
         print(info[4])
         info[5] = request.args["Address"]

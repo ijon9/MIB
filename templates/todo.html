@@ -14,6 +14,9 @@
 {% else %}
 
 <form action="/todo">
+<input type="hidden" name="month" value={{m}}>
+<input type="hidden" name="day" value={{d}}>
+<input type="hidden" name="year" value={{year}}>  
 {% for each in todo %}
 {% if each[8] == 0 %}
 <div class = "row">
@@ -72,9 +75,7 @@
 </div> <br><br>
 
 <!--the following 3 lines broke the page -->
-<input type="hidden" name="month" value={{m}}>
-<input type="hidden" name="day" value={{d}}>
-<input type="hidden" name="year" value={{y}}>
+
 <!-- those ones above -->
 
 <button class="btn btn-dark" id="complete" type="submit">Mark Items as Complete</button>

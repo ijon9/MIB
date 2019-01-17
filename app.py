@@ -235,7 +235,14 @@ def frq():
         if "ign" + req[0] in request.form:
             friends.ignore_friend(req[0], session["username"])
             incoming.remove(req)
-    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar)
+    for req in outgoing:
+        if "den" in request.form:
+            print("den: " + request.form["den"] )
+            print("req: " + req[0] )
+            if request.form["den"] == req[0]:
+                friends.request_denied(session["username"] ,req[0])
+                outgoing.remove(req)
+    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar,)
 
 @app.route("/results", methods=["GET", "POST"])
 def res():

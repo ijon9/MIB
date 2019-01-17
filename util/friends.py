@@ -20,6 +20,13 @@ def accept_friend(user1, user2):
 def ignore_friend(user1, user2):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    c.execute("UPDATE friends SET accepted = 2 WHERE username == ? AND friend == ?",(user1,user2,))
+    db.commit()
+    db.close()
+
+def request_denied(user1, user2):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
     c.execute("UPDATE friends SET accepted = 3 WHERE username == ? AND friend == ?",(user1,user2,))
     db.commit()
     db.close()
@@ -27,7 +34,7 @@ def ignore_friend(user1, user2):
 def outgoing(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    return c.execute("SELECT friend FROM friends WHERE username == ? AND accepted == ?",(user, 0,)).fetchall()
+    return c.execute("SELECT friend,accepted FROM friends WHERE (username == ? AND accepted == ?) OR (username == ? AND accepted == ?)",(user, 0,user,2)).fetchall()
 
 def incoming(user):
     db = sqlite3.connect(DB_FILE)

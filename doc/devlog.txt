@@ -190,6 +190,7 @@ britniC -- 2019-01-15 21:47
 britniC -- 2019-01-15 21:47
 --------------------------------------------------------------
 -Implementing edit with database
+==============================================================
 
 mohammedU -- 2019-01-16 12:30
 --------------------------------------------------------------
@@ -197,3 +198,16 @@ Changed columns in database tables to relate them togerhter
 Fixed bug where events could not be added without checking alerts on
 
 ==============================================================
+
+mohammedJ -- 2019-01-16 3:00
+--------------------------------------------------------------
+Got What's Happening page to work.
+==============================================================
+
+mohammedJ -- 2019-01-17 2:09
+--------------------------------------------------------------
+-Made what's happening page wait between requests due to API limit
+-Made it possible to check things off of todo list
+-Added colors to tasks based on priority
+==============================================================
+

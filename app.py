@@ -57,19 +57,26 @@ def home():
         print("Success alerts")
         adders.add_event(session["username"], title, day, year, month, time, address, description, private, alerts, priority)
         print("Added")
-    '''if "edititems" in request.args:
-        info = [,,,,,,,,,]
+    if "edititems" in request.args:
+        info = ["","","","","","","","","",""]
         date=request.args["Date"].split("-")
         info[0] = request.args["Title"]
-        info[1] = request.args[""]
-        info[2] = request.args[
-        info[3] = request.args[
-        info[4] = request.args[
-        info[5] = request.args[
-        info[6] = request.args[
-        info[7] = request.args[
-        info[8] = request.args[
-        info[9] = request.args['''
+        info[1] = date[0]
+        info[2] = date[1]
+        info[3] = date[2]
+        info[4] = request.args["Time"]
+        info[5] = request.args["Address"]
+        info[6] = request.args["Description"]
+        info[7] = request.args["private"]
+        info[8] = request.args["Alerts"]
+        info[9] = request.args["priority"]
+        oldname = request.args["name"]
+        olddate = request.args["date"].split("-")
+        oldmonth = olddate[0]
+        oldday = olddate[1]
+        oldyear = olddate[2]
+        oldtime = request.args["time"]
+        calendar.edit_event(session["username"], oldname, oldmonth, oldday, oldyear, oldtime, info )
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:

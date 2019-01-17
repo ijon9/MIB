@@ -31,7 +31,7 @@
 
 
 
-<table class="table table-bordered">
+<table class="table table-bordered" style = "table-layout:fixed">
   <thead>
     <tr>
       <th scope="col">Sunday</th>
@@ -75,7 +75,7 @@
 
           {%set newwk = (totalcal[newy][newm].keys()|sort)[-1]%}
 
-          <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{newm}}+&day={{totalcal[newy][newm][newwk][day][0]}}&year={{newy}}">
+          <a class = "btn" style = "height:100%; word-wrap:break-word" role = "button" href = "/todo?user={{user}}&month={{newm}}+&day={{totalcal[newy][newm][newwk][day][0]}}&year={{newy}}">
 
         {% elif (totalcal[y][m][week][day][0] <= 6 and week == (totalcal[y][m].keys()|sort)[-1]) %}
 

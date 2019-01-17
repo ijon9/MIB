@@ -13,31 +13,72 @@
 
 {% else %}
 
+<form action="/todo">
 {% for each in todo %}
-
-<a href="/todoitem?title={{each[0]}}&time={{each[4]}}&month={{m}}&day={{d}}&year={{year}}"  class="list-group-item list-group-item-action">
-  <div class="d-flex w-100 justify-content-between">
+{% if each[8] == 0 %}
+<div class = "row">
+  <div class = "col-sm-1">
     <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id={{each[0]}}>
-      <b> {{ each[0] }} </b>
+      <input type="checkbox" class="form-check-input" name="item{{loop.index}}"value="{{each[0]}}&|{{each[4]}}"id={{each[0]}}>
     </div>
-    <small> {{each[4] }} </small>
   </div>
-  <p class="mb-1"> {{ each[6] }} </p>
-</a>
+  <div class = "col-sm-11">
+    <a href="/todoitem?title={{each[0]}}&time={{each[4]}}&month={{m}}&day={{d}}&year={{y}}"
+    {% if each[7] == 5 %}
+    class="list-group-item list-group-item-danger"
+    {% elif each[7] ==4 %}
+    class="list-group-item list-group-item-primary"
+    {% elif each[7] ==3 %}
+    class="list-group-item list-group-item-secondary"
+    {% elif each[7] ==2 %}
+    class="list-group-item list-group-item-info"
+    {% else %}
+    class="list-group-item list-group-item-light"
+    {% endif %}
+    >
 
-{% endfor %}
+      <div class="d-flex w-100 justify-content-between">
+        <b> {{ each[0] }} </b>
+        <small> {{each[4] }} </small>
+      </div>
+      <p class="mb-1"> {{ each[6] }} </p>
+    </a>
+  </div>
+</div>
+<br>
 
 {% endif %}
-
+{% endfor %}
+{% endif %}
+<br>
+<br>
+<h6><b>Completed Tasks</b></h6>
+{% for each in todo %}
+{% if each[8] == 1 %}
+<div class = "row">
+  <div class = "col-sm-11">
+    <a href="/todoitem?title={{each[0]}}&time={{each[4]}}&month={{m}}&day={{d}}&year={{y}}" class="list-group-item list-group-item-success">
+      <div class="d-flex w-100 justify-content-between">
+        <b> {{ each[0] }} </b>
+        <small> {{ each[4] }} </small>
+      </div>
+      <p class="mb-1"> {{ each[6] }} </p>
+    </a>
+  </div>
+</div>
+<br>
+{% endif %}
+{% endfor %}
 </div> <br><br>
 
-<a role="button" class="btn btn-dark" href="#">Mark Items as Complete</a>
+<!--the following 3 lines broke the page -->
+<input type="hidden" name="month" value={{m}}>
+<input type="hidden" name="day" value={{d}}>
+<input type="hidden" name="year" value={{y}}>
+<!-- those ones above -->
 
-<a role="button" class="btn btn-dark" href="/add">Add Task</a>
-
-</div>
-
-
+<button class="btn btn-dark" id="complete" type="submit">Mark Items as Complete</button>
+<a class="btn btn-dark" role = "button" id="add" href="/add">Add Items</a>
+</form>
 
 {%endblock%}

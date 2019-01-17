@@ -79,7 +79,20 @@
             </div>
           </div>
           <div class = "col-sm-11">
-            <a href="/todoitem?title={{each[0]}}&time={{each[4]}}&month={{m}}&day={{d}}&year={{y}}" class="list-group-item list-group-item-action">
+            <a href="/todoitem?title={{each[0]}}&time={{each[4]}}&month={{m}}&day={{d}}&year={{y}}" 
+            {% if each[7] == 5 %}
+            class="list-group-item list-group-item-danger"
+            {% elif each[7] ==4 %}
+            class="list-group-item list-group-item-primary"
+            {% elif each[7] ==3 %}
+            class="list-group-item list-group-item-secondary"
+            {% elif each[7] ==2 %}
+            class="list-group-item list-group-item-info"
+            {% else %}
+            class="list-group-item list-group-item-light"
+            {% endif %}
+            >
+            
               <div class="d-flex w-100 justify-content-between">
                 <b> {{ each[0] }} </b>
                 <small> {{each[4] }} </small>
@@ -88,7 +101,6 @@
             </a>
           </div>
         </div>
-
         {% endfor %}
 
         {% endif %}

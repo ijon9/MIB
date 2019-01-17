@@ -77,6 +77,8 @@ def home():
         oldyear = olddate[2]
         oldtime = request.args["time"]
         calendar.edit_event(session["username"], oldname, oldmonth, oldday, oldyear, oldtime, info )
+    if "delete" in request.args:
+        calendar.remove_event(session["username"], request.args["title"], request.args["month"], request.args["day"], request.args["year"], request.args["time"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:

@@ -52,22 +52,39 @@
 
       {% for day in month[week] %}
 
-
-
       <td style = "width:14%">
 
-        <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{m}}+&day={{month[week][day][0]}}&year={{y}}">
+        {% if (month[week][day][0] >= 24 and week == 0) %}
+
+          {%set newm = ((m-1)%12)%}
+
+          {% if newm == 0%}
+
+            {% set newm = 12%}
+
+          {%endif%}
+
+          <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{newm}}+&day={{month[week][day][0]}}&year={{y}}">
+
+        {% else %}
+
+          <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{m}}+&day={{month[week][day][0]}}&year={{y}}">
+
+        {% endif%}
 
         <div style = "color:black; text-align:left">
 
-        <h6 style = "color:black"> {{month[week][day][0]}}</h6>
+          <h6 style = "color:black"> {{month[week][day][0]}}</h6>
 
-        {%for item in month[week][day][1]%}
+          {% if not (month[week][day][0] >= 24 and week == 0) %}
 
-        {{item[4]}} {{item[0]}}<br>
+            {%for item in month[week][day][1]%}
 
+              {{item[4]}} {{item[0]}}<br>
 
-        {%endfor%}
+            {%endfor%}
+
+          {%endif%}
 
         </div>
 

@@ -8,7 +8,7 @@
     <nav style="float:center;">
         <ul class="pagination pagination-lg">
         {% for each in pages %}
-        {% if loop.index == active %}
+        {% if loop.index == active or active==0 %}
         <li class="page-item active"><a class="page-link" href="/shared?pages={{loop.index}}">{{loop.index}}</a></li>
         {% else %}
         <li class="page-item"><a class="page-link" href="/shared?pages={{loop.index}}">{{loop.index}}</a></li>
@@ -27,7 +27,7 @@
         <div class="card-body">
         <h5 class="card-title">Author: {{each[0]}}</h5>
         <p class="card-text">
-            <b>Descrpition: </b>{{each[7]}}
+            <b>Description: </b>{{each[7]}}
             <br>
             <br>
             <b>Where: </b>{{each[6]}}

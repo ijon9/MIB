@@ -112,6 +112,15 @@ def home():
         day="0"+str(date.day)
     else:
         day=str(date.day)
+    if any("item" in x for x in request.args):
+        for item in request.args:
+            name=request.args.get(item).split("&|")[0]
+            time=""
+            try:
+                time=request.args.get(item).split("&|")[1]
+            except:
+                time=""
+            calendar.complete_event(session["username"],name,month,day,year,time)
     todo = calendar.get_todo(session["username"], month, day, year)
     print(todo)
     return render_template("home.html", avatar=avatar,display= display,todo = todo, m = month, d = day, y = year)

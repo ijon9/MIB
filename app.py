@@ -49,7 +49,10 @@ def home():
         priority = request.args["priority"]
         print("Success priority")
         private = request.args["private"]
-        print("Success private")
+        if private=="public":
+            private=1
+        else:
+            private=0
         if "Alerts" in request.args.keys():
             alerts = request.args["Alerts"]
         else:
@@ -66,10 +69,18 @@ def home():
         info[2] = date[1]
         info[3] = date[2]
         info[4] = request.args["Time"]
+        print(info[4])
         info[5] = request.args["Address"]
         info[6] = request.args["Description"]
-        info[7] = request.args["private"]
-        info[8] = request.args["Alerts"]
+        private = request.args["private"]
+        if private=="public":
+            info[7]=1
+        else:
+            info[7]=0
+        if "Alerts" in request.args.keys():
+            info[8] = request.args["Alerts"]
+        else:
+            info[8] = "off"
         info[9] = request.args["priority"]
         oldname = request.args["name"]
         olddate = request.args["date"].split("-")
@@ -283,7 +294,6 @@ def shared():
     publicpages=[]
     i=0
     while i+3<len(public):
-        print(public[i:i+3])
         publicpages.append(public[i:i+3])
         i+=3
     publicpages.append(public[i:])
@@ -295,7 +305,7 @@ def shared():
         active=int(request.args["pages"])
     for event in public:
         maplist.append(apihelp.getMap(event[6]))
-        time.sleep(0.35)
+        time.sleep(0.5)
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:

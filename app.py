@@ -126,7 +126,8 @@ def home():
             calendar.complete_event(session["username"],name,month,day,year,time)
     todo = calendar.get_todo(session["username"], month, day, year)
     print(todo)
-    return render_template("home.html", avatar=avatar,display= display,todo = todo, m = month, d = day, y = year)
+    numR = friends.num_requests(session["username"])
+    return render_template("home.html", avatar=avatar,display= display,todo = todo, m = month, d = day, y = year, numR=numR)
 
 
 @app.route("/todoitem", methods=["GET"])
@@ -151,7 +152,8 @@ def todoitem():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("todoitem.html", item = item,display=display,avatar=avatar)
+    numR = friends.num_requests(session["username"])
+    return render_template("todoitem.html", item = item,display=display,avatar=avatar, numR=numR)
 
 @app.route("/login")
 def login():
@@ -190,7 +192,8 @@ def acc():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("account.html",avatar=avatar,display=display)
+    numR = friends.num_requests(session["username"])
+    return render_template("account.html",avatar=avatar,display=display, numR=numR)
 
 
 @app.route("/todo", methods=["GET"])
@@ -223,7 +226,8 @@ def todo():
             calendar.complete_event(session["username"],name,month,day,year,time)
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("todo.html", m = month, d = day, year = year, user = session["username"], todo = todolist,display=display,avatar=avatar)
+    numR = friends.num_requests(session["username"])
+    return render_template("todo.html", m = month, d = day, year = year, user = session["username"], todo = todolist,display=display,avatar=avatar, numR=numR)
 
 @app.route("/logout")
 def logout():
@@ -243,7 +247,8 @@ def add():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("add.html",display=display,avatar=avatar)
+    numR = friends.num_requests(session["username"])
+    return render_template("add.html",display=display,avatar=avatar, numR=numR)
 
 @app.route("/edit", methods=["GET"])
 def edit():
@@ -259,7 +264,8 @@ def edit():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("edit.html", date = date, description = description, time = time, title = title, address = address, priority = priority,display=display,avatar=avatar)
+    numR = friends.num_requests(session["username"])
+    return render_template("edit.html", date = date, description = description, time = time, title = title, address = address, priority = priority,display=display,avatar=avatar, numR=numR)
 
 
 
@@ -276,6 +282,7 @@ def frq():
     outAvatarList = {}
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    numR = friends.num_requests(session["username"])
     for req in incoming:
         incAvatarList[req[0]] = account.get_avatar(req[0])
         if "acc" + req[0] in request.form:
@@ -291,7 +298,7 @@ def frq():
             if request.form["den"] == req[0]:
                 friends.request_denied(session["username"] ,req[0])
                 outgoing.remove(req)
-    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar, friendL=friendL, incAvatarList=incAvatarList, outAvatarList=outAvatarList)
+    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar, friendL=friendL, incAvatarList=incAvatarList, outAvatarList=outAvatarList, numR=numR)
 
 @app.route("/results", methods=["GET", "POST"])
 def res():
@@ -301,6 +308,7 @@ def res():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+    numR = friends.num_requests(session["username"])
     if "sendR" in request.form:
         friends.friend_request(session["username"], request.form["sendR"])
         flash("You have sent a friend request to " + request.form["sendR"] + "!")
@@ -309,8 +317,8 @@ def res():
         avatarList = {}
         for r in result:
             avatarList[r[0][0]] = account.get_avatar(r[0][0])
-        return render_template("results.html", entry=request.form["search"], result=result, display=display, avatar=avatar, avatarList=avatarList)
-    return render_template("results.html", display=display, avatar=avatar)
+        return render_template("results.html", entry=request.form["search"], result=result, display=display, avatar=avatar, avatarList=avatarList, numR=numR)
+    return render_template("results.html", display=display, avatar=avatar, numR=numR)
 
 @app.route("/shared",methods=["GET", "POST"])
 def shared():
@@ -337,8 +345,8 @@ def shared():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-
-    return render_template("shared.html",public=public,maplist=maplist,display=display,avatar=avatar,pages=publicpages,active=active)
+    numR = friends.num_requests(session["username"])
+    return render_template("shared.html",public=public,maplist=maplist,display=display,avatar=avatar,pages=publicpages,active=active, numR=numR)
 if __name__== "__main__":
     app.debug = True
 app.run()

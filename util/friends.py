@@ -86,3 +86,9 @@ def friend_list(user):
         if each != None:
             list.append(each[0])
     return list
+
+def num_requests(user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    x = c.execute("SELECT username FROM friends WHERE friend == ? AND accepted == ?",(user, 0)).fetchall()
+    return len(x)

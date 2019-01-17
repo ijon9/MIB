@@ -72,17 +72,22 @@
         {% else %}
 
         {% for each in todo %}
-
-        <a href="/todoitem?title={{each[0]}}&time={{each[4]}}&month={{m}}&day={{d}}&year={{y}}" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
+        <div class = "row">
+          <div class = "col-sm-1">
             <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id={{each[0]}}>
-              <b> {{ each[0] }} </b>
             </div>
-            <small> {{each[4] }} </small>
           </div>
-          <p class="mb-1"> {{ each[6] }} </p>
-        </a>
+          <div class = "col-sm-11">
+            <a href="/todoitem?title={{each[0]}}&time={{each[4]}}&month={{m}}&day={{d}}&year={{y}}" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <b> {{ each[0] }} </b>
+                <small> {{each[4] }} </small>
+              </div>
+              <p class="mb-1"> {{ each[6] }} </p>
+            </a>
+          </div>
+        </div>
 
         {% endfor %}
 

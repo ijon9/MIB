@@ -44,7 +44,7 @@ def request_denied(user1, user2):
 def outgoing(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    return c.execute("SELECT friend,accepted FROM friends WHERE (username == ? AND accepted == ?) OR (username == ? AND accepted == ?)",(user, 0,user,2)).fetchall()
+    return c.execute("SELECT friend,accepted FROM friends WHERE (username == ? AND accepted == ?) OR (username == ? AND accepted == ?)",(user, 0,user,2,)).fetchall()
 
 def incoming(user):
     db = sqlite3.connect(DB_FILE)
@@ -72,3 +72,17 @@ def get_results(user,entry):
                 n.append("NF")
             res.append(n)
     return res
+
+def friend_list(user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    list = []
+    x = c.execute("SELECT username FROM friends WHERE friend == ? AND accepted == ?",(user,1)).fetchall()
+    for each in x:
+        if each != None:
+            list.append(each[0])
+    y = c.execute("SELECT friend FROM friends WHERE username == ? AND accepted == ?",(user,1)).fetchall()
+    for each in y:
+        if each != None:
+            list.append(each[0])
+    return list

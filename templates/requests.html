@@ -59,32 +59,23 @@
             <form id="x" action="/requests" method="POST">
               <button type="submit" class="btn btn-primary" name="den" value="{{each[0]}}">Close Request</button>
             </form>
-            {% endif %}
+          {% elif each[1] == 1 %}
+            <label for="x">status: Accepted! </label>
+            <form id="x" action="/requests" method="POST">
+              <button type="submit" class="btn btn-primary" name="acc" value="{{each[0]}}">Close Request</button>
+            </form>
+          {% endif %}
         </div>
         {% endif %}
     {% endfor %}
     </div>
-
     {% endif %}
-<!-- <div class="row">
-  <div class="col-4">
-    <div class="list-group" id="list-tab" role="tablist">
-      {% if out == [] %}
-        <div class="alert alert-primary" role="alert">No requests at the moment </div>
-        {% else %}
-          {% for each in out %}
-            <a class="list-group-item list-group-item-action active" id="list-{{each[0]}}-list" data-toggle="list" href="#list-{{each[0]}}" role="tab" aria-controls="{{each[0]}}">{{each[0]}}</a>
-          {% endfor %}
-        {% endif %}
-    </div>
-  </div>
-  <div class="col-8">
-    <div class="tab-content" id="nav-tabContent">
-    {% for each in out %}
-      <div class="tab-pane fade show active" id="list-{{each[0]}}" role="tabpanel" aria-labelledby="list-{{each[0]}}-list">Hi {{each[0]}}!</div>
+<br>
+<h2> Friends </h2>
+<div class="list-group" style="width:20 px">
+    {% for each in friendL %}
+      <li class="list-group-item"> {{each}} </li>
     {% endfor %}
-    </div>
-  </div>
-</div> -->
+</div>
 
 {%endblock%}

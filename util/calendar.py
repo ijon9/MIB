@@ -44,15 +44,20 @@ def get_calendar(year, month, user):
     return monthcalendar
 
 def remove_event(user, name, month, day, year, clock):
+    print("TRYING TO DELETE")
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    print(user)
     command = "DELETE FROM calendar WHERE user == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"
-    args = (user,name,year,month,day,clock,)
-    c.execute(command,args)
+    params = (user,name,year,month,day,clock)
+    print(params)
+    c.execute(command,params)
     db.commit()
     db.close()
+    print("DELETE COMPLETE")
 
 def edit_event(user, name, month, day, year, clock, info):
+    print("TRYING TO Edit")
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "UPDATE calendar SET name = ?,month = ?,day = ?,year = ?,clock = ?,location = ?,description = ?,public = ?,alert = ?,priority = ? WHERE user == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"

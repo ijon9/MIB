@@ -46,7 +46,7 @@ def home():
         print("Success Address")
         description = request.args["Description"]
         print("Sucess Description")
-        priority = request.args["priority"]
+        priority = int(request.args["priority"])
         print("Success priority")
         private = request.args["private"]
         if private=="public":
@@ -81,7 +81,7 @@ def home():
             info[8] = request.args["Alerts"]
         else:
             info[8] = "off"
-        info[9] = request.args["priority"]
+        info[9] = int(request.args["priority"])
         oldname = request.args["name"]
         olddate = request.args["date"].split("-")
         oldmonth = olddate[0]

@@ -24,7 +24,7 @@ def get_avatar(user):
     return c.execute(command,args).fetchone()
 
 """
-def get_public():
+def get_public(): old one
     """"""
         Returns a list of lists containing information about each public event
     """"""
@@ -45,7 +45,7 @@ def get_public():
     """
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    listybois = c.execute("SELECT user,name,month,day,year,clock,location,description FROM calendar WHERE public = public").fetchall()
+    listybois = c.execute("SELECT user,name,month,day,year,clock,location,description FROM calendar WHERE public = public AND complete = 0").fetchall()
     return sorted(listybois, key=helpyboi)
 
 

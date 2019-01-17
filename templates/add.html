@@ -3,8 +3,9 @@
 {%block main%}
 
 <div style = "padding:20">
-
-<h4 style = "text-align:center"> {%block eventhead%} Add an Event {%endblock%}</h4><br>
+{#{%set head = head|default("Add An Event")%}#}
+<!--<h4 style = "text-align:center"> {{head }}</h4><br>-->
+<h4 style = "text-align:center"> {%block head%} Add an Event {%endblock%}</h4><br>
 
 <form action = "\" method = "GET">
 
@@ -62,10 +63,17 @@
   </label>
 </div>
 
-{%set value = "additems"%}
+{#{%set value = value|default("additems")%}
+{%set href = href|default("/")%}
+{%set button = button|default("Add Event")%}
+#}
+{%block hide%}
+{%endblock%}
+
 <div class = "form-row">
   <div class = "form-group">
-    <button type = "submit" class = "btn btn-dark" id="{{value}}" name = "additems"> {%block button%} Add Event {%endblock%}</button>
+    <!--<button type = "submit" class = "btn btn-dark" id={{value}} name = {{value}} href = {{href}}> {{button}}</button>-->
+    <button type = "submit" class = "btn btn-dark" id= "{%block value%}additems{%endblock%}" name = "{%block valuetwo%}additems{%endblock%}" action ="/">{%block button%}Add Event{%endblock%}</button>
   </div>
   <div class = "form-group">
     <a class = "btn btn-dark" role = "button" href = "/"> Cancel </a>

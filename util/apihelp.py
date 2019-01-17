@@ -19,7 +19,6 @@ def holidays(year,month):
         print("something went wrong")
     return response
 
-print(holidays(2019,1))
 
 def datify(time):
     '''
@@ -61,9 +60,13 @@ def getGeocode(address):
     }
     r = requests.get(url, params=data)
     response=r.json()
-    loc=[]
-    loc.append(float(response[0]["lat"]))
-    loc.append(float(response[0]["lon"]))
+    try:
+        loc=[]
+        loc.append(float(response[0]["lat"]))
+        loc.append(float(response[0]["lon"]))
+    except:
+        loc.append(40.7180)
+        loc.append(-74.0139)
     return loc
 def traffic(location):
     '''

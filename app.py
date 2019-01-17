@@ -200,18 +200,7 @@ def todo():
     month = request.args["month"]
     day = request.args["day"]
     year = request.args["year"]
-    if int(month)<10:
-        month="0"+month
-    month=month[0:-1]
-    if int(day)<10:
-        day="0"+str(day)
-    else:
-        day=str(day)
-    todolist = calendar.get_todo(session["username"], month, day, year)
-    print(todolist)
-    print(month+ "-" + day + "-" + year)
-    display=getters.get_display(session["username"])[0]
-    avatar=getters.get_avatar(session["username"])[0]
+    print(year)
     if any("item" in x for x in request.args):
         for item in request.args:
             name=request.args.get(item).split("&|")[0]
@@ -221,6 +210,20 @@ def todo():
             except:
                 time=""
             calendar.complete_event(session["username"],name,month,day,year,time)
+    else:
+        if int(month)<10:
+            month="0"+month
+        month=month[0:-1]
+
+        if int(day)<10:
+            day="0"+str(day)
+        else:
+            day=str(day)
+    todolist = calendar.get_todo(session["username"], month, day, year)
+    print(todolist)
+    print(month+ "-" + day + "-" + year)
+    display=getters.get_display(session["username"])[0]
+    avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
     return render_template("todo.html", m = month, d = day, year = year, user = session["username"], todo = todolist,display=display,avatar=avatar)

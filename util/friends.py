@@ -3,6 +3,16 @@ import sqlite3
 
 DB_FILE = "data/database.db"
 
+def request_present(user1, user2):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    l = []
+    l.append(c.execute("SELECT username,friend FROM friends WHERE (username == ? AND friend == ?) or (username == ? AND friend == ?)",(user1, user2, user2, user1)).fetchone())
+    if l[0] == None:
+        return False
+    else:
+        return True
+
 def friend_request(user1, user2):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -41,7 +51,7 @@ def incoming(user):
     c = db.cursor()
     return c.execute("SELECT username FROM friends WHERE friend == ? AND accepted == ?",(user, 0)).fetchall()
 
-def get_results(entry):
+def get_results(user,entry):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     userList = c.execute("SELECT user FROM accts").fetchall()
@@ -51,5 +61,14 @@ def get_results(entry):
             possUsers.append(u[0])
     res = []
     for possU in possUsers:
-        res.append(c.execute("SELECT user,display,avatar FROM accts WHERE user == ?",(possU,)).fetchone())
+        if user == possU:
+            pass
+        else:
+            n = []
+            n.append(c.execute("SELECT user,display,avatar FROM accts WHERE user == ?",(possU,)).fetchone())
+            if request_present(user, possU):
+                n.append("F")
+            else:
+                n.append("NF")
+            res.append(n)
     return res

@@ -256,7 +256,7 @@ def res():
         friends.friend_request(session["username"], request.form["sendR"])
         flash("You have sent a friend request to " + request.form["sendR"] + "!")
     elif "searchRes" in request.form:
-        result = friends.get_results(request.form["search"])
+        result = friends.get_results(session["username"], request.form["search"])
         return render_template("results.html", entry=request.form["search"], result=result, display=display, avatar=avatar)
     return render_template("results.html", display=display, avatar=avatar)
 

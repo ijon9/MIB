@@ -20,12 +20,16 @@
 <h3 style="text-align: left"> Search Results </h3>
 
 {% for each in result %}
-Display: {{each[1]}} <br>
-User: {{each[0]}}
-<form action="/results" method="POST">
-  <button type="submit" class="btn btn-success" name="sendR" value="{{each[0]}}">Send Request</button>
-</form>
-
+Display: {{each[0][1]}} <br>
+User: {{each[0][0]}}
+{% if each[1] == "NF" %}
+  <form action="/results" method="POST">
+    <button type="submit" class="btn btn-success" name="sendR" value="{{each[0]}}">Send Request</button>
+  </form>
+{% else %}
+  <br>
+    <button type="button" class="btn btn-secondary btn-lg" disabled>Friends</button>
+  {% endif %}
 {% endfor %}
 
 

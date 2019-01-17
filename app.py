@@ -25,6 +25,8 @@ def home():
     if "register" in request.form:
         message=auth.register(request.form["user"],request.form["pass"],request.form["confirmpass"],request.form["display"])
         flash(message)
+        if message == "Account creation successful":
+            account.change_avatar(request.form["user"],"https://api.adorable.io/avatars/285/"+request.form["user"]+".png" )
         return redirect(url_for("login"))
     if "username" not in session:
         return redirect(url_for("login"))
@@ -100,6 +102,7 @@ def home():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
+
     date = datetime.date.today()
     year=str(date.year)
     month=""

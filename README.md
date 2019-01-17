@@ -60,9 +60,11 @@ To run the app:
 - Traffic: https://developer.mapquest.com/documentation/traffic-api/
 - LocationIQ: https://locationiq.com/docs
 - Holiday: https://holidayapi.pl/ (key not needed)
+- Avatar: https://api.adorable.io/avatars/285/ (key not needed)
 
 ## Dependencies: 
 - Flask: Runs the web application on local host.
 - Wheel: Used for Flask.
 - SQLite: Creates databases for storing information.
 - URLLib3: Receives information from APIs.
+- requests: Receives requests from html forms

@@ -34,8 +34,8 @@
             <button type="submit" class="btn btn-primary" name="ign{{each[0]}}">Ignore</button>
           </form>
       </div>
+      </div>
   {% endfor %}
-  </div>
 </div>
 {% endif %}
 <br>
@@ -50,7 +50,7 @@
     {% for each in out %}
     {% if each[1] != 3 %}
     <div class="card border-info mb-3" style="width: 20rem;height:10rem">
-        <div class="card-header">{{each[0]}}</div>
+         <div class="card-header"> <img src="{{avatar}}" height="48px" alt="Not available"> {{each[0]}}</div>
         <div class="card-body text-info">
           {% if each[1] == 0 %}
             <label for="x">status: pending </label>

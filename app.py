@@ -58,6 +58,7 @@ def home():
         adders.add_event(session["username"], title, day, year, month, time, address, description, private, alerts, priority)
         print("Added")
     if "edititems" in request.args:
+        print("EDITING FROM APP.PY")
         info = ["","","","","","","","","",""]
         date=request.args["Date"].split("-")
         info[0] = request.args["Title"]
@@ -76,9 +77,14 @@ def home():
         oldday = olddate[1]
         oldyear = olddate[2]
         oldtime = request.args["time"]
+        print(request.args)
+        print(info)
         calendar.edit_event(session["username"], oldname, oldmonth, oldday, oldyear, oldtime, info )
     if "delete" in request.args:
+        print("Deleting FROM APP.PY")
         calendar.remove_event(session["username"], request.args["title"], request.args["month"], request.args["day"], request.args["year"], request.args["time"])
+    print("ARGS:")
+    print(request.args)
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:

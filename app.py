@@ -167,9 +167,10 @@ def cal():
     totalcal = calendar.get_calendar( session["username"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
+    holidays = apihelp.holidays("2019", "01")
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("calendar.html",avatar=avatar,display=display, totalcal = totalcal, y =date.year, m = date.month)
+    return render_template("calendar.html",avatar=avatar,display=display, totalcal = totalcal, y =date.year, m = date.month, holidays = apihelp.holidays)
 
 
 @app.route("/account",methods=["POST","GET"])

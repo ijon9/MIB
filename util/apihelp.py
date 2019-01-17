@@ -15,6 +15,7 @@ def holidays(year,month):
     r=requests.get(url,params=data)
     try:
         response=r.json()
+        print(response)
     except:
         print("something went wrong")
     return response

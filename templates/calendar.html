@@ -55,7 +55,7 @@
 
       {% for day in totalcal[y][m][week] %}
 
-      <td style = "width:14%">
+      <td style = "width:14%; max-width: 14%; max-height: 200px">
 
       {%set newy = y%}
 
@@ -102,6 +102,18 @@
         <div style = "color:black; text-align:left">
 
           <h6 style = "color:black"> {{totalcal[y][m][week][day][0]}}</h6>
+
+          {%set hols = holidays(newy, newm)%}
+
+          {%for hol in hols["holidays"]%}
+
+          {%if hol["date"].endswith(totalcal[y][m][week][day][0]|string)%}
+
+          {{hol["name"]}}<br>
+
+          {%endif%}
+
+          {%endfor%}
 
           {%for item in totalcal[newy][newm][newwk][day][1]%}
 

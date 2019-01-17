@@ -3,32 +3,39 @@
 {% block main %}
 
 <h4 style = "text-align:center"> Your Calendar </h4><br>
-
+<form action="\calendar" id="selector">
 <div class = "form-row">
   <div class = "form-group">
-    <select id="monthselect" name = "monthselect" class="form-control" data-target="#monthselect" data-toggle="Setters">
-      <option>01</option>
-      <option>02</option>
-      <option>03</option>
-      <option>04</option>
-      <option>05</option>
-      <option>06</option>
-      <option>07</option>
-      <option>08</option>
-      <option>09</option>
-      <option>10</option>
-      <option>11</option>
-      <option>12</option>
-    </select>
-  </div>
-  <div class = "form-group">
-    <select id="yearselect" name = "yearselect" class="form-control" data-target="#monthselect" data-toggle="Setters">
-      {% for year in range(2018,2024)%}
-      <option>{{year}}</option>
+    <select id="monthselect" name = "monthselect" class="form-control" data-target="#monthselect" data-toggle="Setters" name="month">
+      {% for month in range(1,12)%}
+        {% if month<10 %}
+          {% if month == m %}
+            <option selected>0{{month}}</option>
+          {% else %}
+            <option>0{{month}}</option>
+          {% endif %}
+        {% else %}
+          {% if month == m %}
+            <option selected>{{month}}</option>
+          {% else %}
+            <option>{{month}}</option>
+          {% endif %}
+        {% endif %}
       {%endfor%}
     </select>
   </div>
-
+  <div class = "form-group">
+    <select id="yearselect" name = "yearselect" class="form-control" data-target="#monthselect" data-toggle="Setters" name="year">
+      {% for year in range(2018,2024)%}
+        {% if year == y %}
+          <option selected>{{year}}</option>
+        {% else %}
+          <option>{{year}}</option>
+        {%endif%}
+      {%endfor%}
+    </select>
+  </div>
+</form>
 
 
 <table class="table table-bordered">
@@ -49,66 +56,45 @@
     <div id = "set">
     </div>
 <script src="{{ url_for('static', filename='calendar.js') }}"></script>
-    {% for week in totalcal[y][m] %}
+ {% for week in month %}
 
     <tr style = height:150px>
 
-      {% for day in totalcal[y][m][week] %}
+      {% for day in month[week] %}
 
       <td style = "width:14%">
 
-      {%set newy = y%}
+        {% if (month[week][day][0] >= 24 and week == 0) %}
 
-      {%set newwk = week%}
+          {%set newm = ((m-1)%12)%}
 
-      {%set newm = m%}
-
-        {% if (totalcal[y][m][week][day][0] >= 24 and week == 0) %}
-
-          {%set newm = ((m-1)%12)%}{% if newm == 0%}
+          {% if newm == 0%}
 
             {% set newm = 12%}
 
-            {% set newy = y - 1%}
-
           {%endif%}
 
-          {%set newwk = (totalcal[newy][newm].keys()|sort)[-1]%}
-
-          <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{newm}}+&day={{totalcal[newy][newm][newwk][day][0]}}&year={{newy}}">
-
-        {% elif (totalcal[y][m][week][day][0] <= 6 and week == (totalcal[y][m].keys()|sort)[-1]) %}
-
-          {%set newm = ((m+1)%12)%}
-
-          {%set newwk = 0%}
-
-          {% if newm == 13%}
-
-            {% set newm = 1%}
-
-            {% set newy = y + 1%}
-
-          {%endif%}
-
-          <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{newm}}+&day={{totalcal[newy][newm][newwk][day][0]}}&year={{newy}}">
+          <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{newm}}+&day={{month[week][day][0]}}&year={{y}}">
 
         {% else %}
 
-          <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{m}}+&day={{totalcal[y][m][week][day][0]}}&year={{y}}">
+          <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{m}}+&day={{month[week][day][0]}}&year={{y}}">
 
         {% endif%}
 
         <div style = "color:black; text-align:left">
 
-          <h6 style = "color:black"> {{totalcal[y][m][week][day][0]}}</h6>
+          <h6 style = "color:black"> {{month[week][day][0]}}</h6>
 
-          {%for item in totalcal[newy][newm][newwk][day][1]%}
+          {% if not (month[week][day][0] >= 24 and week == 0) %}
+
+            {%for item in month[week][day][1]%}
 
               {{item[4]}} {{item[0]}}<br>
 
             {%endfor%}
 
+          {%endif%}
 
         </div>
 
@@ -124,7 +110,6 @@
 
   </tbody>
 </table>
-
 <a role="button" class="btn btn-dark" href="/add">Add Task</a>
 
 

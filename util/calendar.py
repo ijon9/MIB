@@ -14,35 +14,33 @@ def get_todo(user, month, day, year):
     args = (user,year,month,day,)
     return c.execute(command,args).fetchall()
 
-
-def get_calendar( user):
-    totalcal={}
-    for year in range(2018,2024):
-        totalcal[year] = {}
-        for month in range(1, 13):
-            totalcal[year][month] = {}
-            cal = calendar.Calendar(6).monthdatescalendar(year, month)
-            wk = 0
-            d = 0
-            for week in cal:
-                totalcal[year][month][wk] = {}
-                d = 0
-                for day in week:
-                    stryear=str(year)
-                    strmonth=""
-                    strday=""
-                    if month<10:
-                        strmonth="0"+str(month)
-                    else:
-                        strmonth=str(month)
-                    if day.day<10:
-                        strday="0"+str(day.day)
-                    else:
-                        strday=str(day.day)
-                    totalcal[year][month][wk][d] = [day.day, get_todo(user, strmonth, strday, stryear)]
-                    d = d+1
-                wk = wk+1
-    return totalcal
+def get_calendar(year, month, user):
+    cal = calendar.Calendar(6).monthdatescalendar(year, month)
+    monthcalendar = {}
+    w = 0
+    d = 0
+    for week in cal:
+        monthcalendar[w] = {}
+        d = 0
+        for day in week:
+            stryear=str(year)
+            strmonth=""
+            strday=""
+            if month<10:
+                strmonth="0"+str(month)
+            else:
+                strmonth=str(month)
+            if day.day<10:
+                strday="0"+str(day.day)
+            else:
+                strday=str(day.day)
+            print(strday)
+            monthcalendar[w][d] = [day.day, get_todo(user, strmonth, strday, stryear)]
+            print(get_todo(user, strmonth, strday, stryear))
+            d = d+1
+        w = w+1
+    print(monthcalendar)
+    return monthcalendar
 
 def remove_event(user, name, month, day, year, clock):
     print("TRYING TO DELETE")

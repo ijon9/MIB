@@ -164,12 +164,18 @@ def cal():
     if "username" not in session:
         return redirect(url_for("login"))
     date = datetime.date.today()
-    totalcal = calendar.get_calendar( session["username"])
+    year=date.year
+    if "yearselect" in request.args:
+        year=request.args["yearselect"]
+    month=date.month
+    if "monthselect" in request.args:
+        month=request.args["monthselect"]
+    monthlycal = calendar.get_calendar( int(year),int(month),session["username"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("calendar.html",avatar=avatar,display=display, totalcal = totalcal, y =date.year, m = date.month)
+    return render_template("calendar.html",avatar=avatar,display=display, month = monthlycal,m=int(month),y=int(year))
 
 
 @app.route("/account",methods=["POST","GET"])

@@ -6,7 +6,7 @@
 
 <div class = "form-row">
   <div class = "form-group">
-    <select id="monthselect" name = "monthselect" class="form-control" href="/">
+    <select id="monthselect" name = "monthselect" class="form-control" data-target="#monthselect" data-toggle="Setters">
       <option>01</option>
       <option>02</option>
       <option>03</option>
@@ -22,12 +22,13 @@
     </select>
   </div>
   <div class = "form-group">
-    <select id="yearselect" name = "yearselect" class="form-control" action = "/calendar#">
+    <select id="yearselect" name = "yearselect" class="form-control" data-target="#monthselect" data-toggle="Setters">
       {% for year in range(2018,2024)%}
       <option>{{year}}</option>
       {%endfor%}
     </select>
   </div>
+
 
 
 <table class="table table-bordered">
@@ -45,7 +46,9 @@
   <tbody>
 
 
-
+    <div id = "set">
+    </div>
+<script src="{{ url_for('static', filename='calendar.js') }}"></script>
     {% for week in totalcal[y][m] %}
 
     <tr style = height:150px>

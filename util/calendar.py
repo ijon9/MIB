@@ -39,12 +39,9 @@ def get_calendar( user):
                         strday="0"+str(day.day)
                     else:
                         strday=str(day.day)
-                    print(strday)
                     totalcal[year][month][wk][d] = [day.day, get_todo(user, strmonth, strday, stryear)]
-                    print(get_todo(user, strmonth, strday, stryear))
                     d = d+1
                 wk = wk+1
-    print(totalcal)
     return totalcal
 
 def remove_event(user, name, month, day, year, clock):

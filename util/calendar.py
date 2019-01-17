@@ -10,7 +10,7 @@ def get_todo(user, month, day, year):
     """Returns the to-do list for a specific day"""
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    command = "SELECT name,month,day,year,clock,location,description FROM calendar WHERE user == ? AND year == ? AND month == ? AND day == ?"
+    command = "SELECT name,month,day,year,clock,location,description,priority FROM calendar WHERE user == ? AND year == ? AND month == ? AND day == ? AND complete == 0"
     args = (user,year,month,day,)
     return c.execute(command,args).fetchall()
 
@@ -68,3 +68,12 @@ def edit_event(user, name, month, day, year, clock, info):
     db.commit()
     db.close()
     return "Edited"
+
+def complete_event(user, name, month, day, year, clock):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "UPDATE calendar SET complete = 1 WHERE user == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"
+    args = (user,name,year,month,day,clock)
+    c.execute(command,args)
+    db.commit()
+    db.close()

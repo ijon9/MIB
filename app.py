@@ -171,7 +171,8 @@ def cal():
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
         avatar="https://api.adorable.io/avatars/285/"+session["username"]+".png"
-    return render_template("calendar.html",avatar=avatar,display=display, totalcal = totalcal, y =date.year, m = date.month)
+    numR = friends.num_requests(session["username"])
+    return render_template("calendar.html",avatar=avatar,display=display, totalcal = totalcal, y =date.year, m = date.month, numR=numR)
 
 
 @app.route("/account",methods=["POST","GET"])

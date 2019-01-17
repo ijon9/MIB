@@ -223,6 +223,7 @@ def frq():
         return redirect(url_for("login"))
     incoming = friends.incoming(session["username"])
     outgoing = friends.outgoing(session["username"])
+    friendL = friends.friend_list(session["username"])
     display=getters.get_display(session["username"])[0]
     avatar=getters.get_avatar(session["username"])[0]
     if avatar==None:
@@ -237,12 +238,10 @@ def frq():
             incoming.remove(req)
     for req in outgoing:
         if "den" in request.form:
-            print("den: " + request.form["den"] )
-            print("req: " + req[0] )
             if request.form["den"] == req[0]:
                 friends.request_denied(session["username"] ,req[0])
                 outgoing.remove(req)
-    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar,)
+    return render_template("requests.html", inc=incoming, out = outgoing, display=display, avatar=avatar, friendL=friendL)
 
 @app.route("/results", methods=["GET", "POST"])
 def res():

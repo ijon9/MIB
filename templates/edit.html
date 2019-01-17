@@ -1,18 +1,4 @@
 {%extends "add.html"%}
-{%block main%}
-{{ super() }}
-
-{%set title = title%}
-{%set description = description%}
-{%set time = time%}
-{%set date = date%}
-{%set address = address%}
-{%set priority = priority%}
-{#
-{%set value = "edititems"%}
-{%set button = "Edit Event"%}
-{%set head = "Edit An Event"%}
-{%set href = "/?name={{title}}&date={{date}}&time={{time}}"%}#}
 {%block value%}edititems{%endblock%}
 {%block valuetwo%}edititems{%endblock%}
 {%block button%}Edit Event{%endblock%}
@@ -23,6 +9,5 @@
 {%block hide%}
 <input type = "hidden" name = "name" value={{title}}>
 <input type = "hidden" name = "date" value={{date}}>
-<input type = "hidden" name = "time" value={{tiem}}>
-{%endblock%}
+<input type = "hidden" name = "time" value={{time}}>
 {%endblock%}

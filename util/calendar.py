@@ -57,5 +57,8 @@ def edit_event(user, name, month, day, year, clock, info):
     c = db.cursor()
     command = "UPDATE calendar SET name = ?,month = ?,day = ?,year = ?,clock = ?,location = ?,description = ?,public = ?,alert = ?,priority = ? WHERE user == ? AND name == ? AND year == ? AND month == ? AND day == ? AND clock == ?"
     args = (info[0],info[1],info[2],info[3],info[4],info[5],info[6],info[7],info[8],info[9],user,name,month,day,year,clock)
+    print(args)
+    c.execute(command,args)
     db.commit()
     db.close()
+    return "Edited"

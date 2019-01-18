@@ -76,16 +76,16 @@ def get_results(user,entry):
 def friend_list(user):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    list = []
+    l = []
     x = c.execute("SELECT username FROM friends WHERE friend == ? AND accepted == ?",(user,1)).fetchall()
     for each in x:
         if each != None:
-            list.append(each[0])
+            l.append(each[0])
     y = c.execute("SELECT friend FROM friends WHERE username == ? AND accepted == ?",(user,1)).fetchall()
     for each in y:
         if each != None:
-            list.append(each[0])
-    return list
+            l.append(each[0])
+    return l
 
 def num_requests(user):
     db = sqlite3.connect(DB_FILE)

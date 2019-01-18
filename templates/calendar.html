@@ -63,7 +63,7 @@
       {% for day in month[week] %}
 
       <td style = "width:14%; max-width: 14%; max-height: 200px">
-
+        <div class="text-truncate">
         {% if (month[week][day][0] >= 24 and week == 0) %}
 
           <a class = "btn" style = "height:100%; width:100%" role = "button" href = "/todo?user={{user}}&month={{newm}}+&day={{month[week][day][0]}}&year={{y}}">
@@ -103,7 +103,7 @@
         </div>
 
       </a>
-
+    </div>
       </td>
 
       {%endfor%}

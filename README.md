@@ -51,8 +51,6 @@ To run the app:
 ```
 
 ## API Information
-- Weather: https://darksky.net/dev
-- Traffic: https://developer.mapquest.com/documentation/traffic-api/
 - LocationIQ: https://locationiq.com/docs
 - Holiday: https://holidayapi.pl/ (key not needed)
 - Avatar: http://avatars.adorable.io/ (key not needed)
@@ -63,3 +61,6 @@ To run the app:
 - SQLite: Creates databases for storing information.
 - URLLib3: Receives information from APIs.
 - requests: Receives requests from html forms
+
+## Things We Didn't Get To
+- Weather and traffic api

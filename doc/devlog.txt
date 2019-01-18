@@ -227,3 +227,10 @@ britniC -- 2019-01-16 01:00
 -Started to implement jinja & js to change month and year of
  calendar, not working
 ==============================================================
+
+mohammedJ -- 2019-01-17 19:58
+--------------------------------------------------------------
+-Fixed Calendar
+-Fixed What's happening
+-The End
+==============================================================

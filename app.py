@@ -336,6 +336,10 @@ def shared():
     if "username" not in session:
         return redirect(url_for("login"))
     public=getters.get_public()
+    friendlist=friends.friend_list(session["username"])
+    for pages in public:
+        if pages[0] not in friendlist:
+            public.remove(pages)
     maplist=[]
     publicpages=[]
     i=0

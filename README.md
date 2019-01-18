@@ -23,11 +23,6 @@ Run this command in our app’s home directory to install all necessary dependen
 (venv)$pip install -r requirements.txt
 ```
 
-Prepare the database by running:
-```
-python util/table.py
-```
-
 Prepare API Keys:
 - Acquire API keys for those found in [API Information](#API-Information)
 - Load into the seperate files for each api in the keys folder keys:
